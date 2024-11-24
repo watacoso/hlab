@@ -144,12 +144,12 @@ Installation using `Helm` (Release 3):
     ingressClassName: nginx
     # ingress host
     hosts:
-      - s3.picluster.ricsanfre.com
+      - s3.picluster.watacoso.com
     ## TLS Secret Name
     tls:
       - secretName: minio-tls
         hosts:
-          - s3.picluster.ricsanfre.com
+          - s3.picluster.watacoso.com
     ## Default ingress path
     path: /
     ## Ingress annotations
@@ -159,7 +159,7 @@ Installation using `Helm` (Release 3):
       #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API)
       #   * 'ca-issuer' (CA-signed certificate, not valid)
       cert-manager.io/cluster-issuer: letsencrypt-issuer
-      cert-manager.io/common-name: s3.picluster.ricsanfre.com
+      cert-manager.io/common-name: s3.picluster.watacoso.com
 
   # console Ingress (nginx)
   consoleIngress:
@@ -169,12 +169,12 @@ Installation using `Helm` (Release 3):
     ingressClassName: nginx
     # ingress host
     hosts:
-      - minio.picluster.ricsanfre.com
+      - minio.picluster.watacoso.com
     ## TLS Secret Name
     tls:
       - secretName: minio-console-tls
         hosts:
-          - minio.picluster.ricsanfre.com
+          - minio.picluster.watacoso.com
     ## Default ingress path
     path: /
     ## Ingress annotations
@@ -184,7 +184,7 @@ Installation using `Helm` (Release 3):
       #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API)
       #   * 'ca-issuer' (CA-signed certificate, not valid)
       cert-manager.io/cluster-issuer: letsencrypt-issuer
-      cert-manager.io/common-name: minio.picluster.ricsanfre.com
+      cert-manager.io/common-name: minio.picluster.watacoso.com
 
   ```
 
@@ -198,13 +198,13 @@ Installation using `Helm` (Release 3):
 
   - Enable creation of Prometheus ServiceMonitor object (`metrics.serviceMonitor`).
 
-  - Minio PODs are deployed only on x86 nodes (`affinity`). Minio does not work properly when mixing nodes of different architectures. See [issue #137](https://github.com/ricsanfre/pi-cluster/issues/137)
+  - Minio PODs are deployed only on x86 nodes (`affinity`). Minio does not work properly when mixing nodes of different architectures. See [issue #137](https://github.com/watacoso/pi-cluster/issues/137)
 
   - Buckets (`buckets`), users (`users`) and policies (`policies`) are created for Loki and Tempo
 
-  - Ingress resource (`ingress`) for s3 service API available at `s3.picluster.ricsanfre.com`. Annotated so Cert-Manager generate the TLS certificate automatically.
+  - Ingress resource (`ingress`) for s3 service API available at `s3.picluster.watacoso.com`. Annotated so Cert-Manager generate the TLS certificate automatically.
 
-  - Ingress resource (`ingressConsole`) for S3 console available at `minio.picluster.ricsanfre.com`.
+  - Ingress resource (`ingressConsole`) for S3 console available at `minio.picluster.watacoso.com`.
 Annotated so Cert-Manager generate the TLS certificate automatically.
 
 - Step 5: Install Minio in `minio` namespace

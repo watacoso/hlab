@@ -19,7 +19,7 @@ Installing Vault as Kubernetes service will drive us to a chicken/egg situation 
 
 ## Vault installation
 
-Vault installation and configuration tasks have been automated with Ansible developing a role: **ricsanfre.vault**. This role, installs Vault Server, initialize it and install a systemd service to automatically unseal it whenever vault server is restarted.
+Vault installation and configuration tasks have been automated with Ansible developing a role: **watacoso.vault**. This role, installs Vault Server, initialize it and install a systemd service to automatically unseal it whenever vault server is restarted.
 
 ### Vault installation from binaries
 
@@ -88,7 +88,7 @@ Instead of installing Vault using official Ubuntu packages, installation will be
             -sha256 \
             -nodes \
             -newkey rsa:4096 \
-            -subj "/CN=Ricsanfre CA" \
+            -subj "/CN=Watacoso CA" \
             -keyout rootCA.key -out rootCA.crt
      ```
 
@@ -105,10 +105,10 @@ Instead of installing Vault using official Ubuntu packages, installation will be
                  -keyout vault.key \
                  -out vault.csr \
                  -batch \
-                 -subj "/C=ES/ST=Madrid/L=Madrid/O=Ricsanfre CA/OU=picluster/CN=vault.picluster.ricsanfre.com"
+                 -subj "/C=ES/ST=Madrid/L=Madrid/O=Watacoso CA/OU=picluster/CN=vault.picluster.watacoso.com"
 
       openssl x509 -req -days 365000 -set_serial 01 \
-            -extfile <(printf "subjectAltName=DNS:vault.picluster.ricsanfre.com") \
+            -extfile <(printf "subjectAltName=DNS:vault.picluster.watacoso.com") \
             -in vault.csr \
             -out vault.crt \
             -CA rootCA.crt \
@@ -678,7 +678,7 @@ Enabling [Vault kubernetes auth method](https://developer.hashicorp.com/vault/do
   ```shell
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST\
     --data '{"type":"kubernetes","description":"kubernetes auth"}' \
-    https://vault.picluster.ricsanfre.com:8200/v1/sys/auth/kubernetes
+    https://vault.picluster.watacoso.com:8200/v1/sys/auth/kubernetes
   ```
 
 - Step 8. Configure Vault kubernetes auth method
@@ -696,7 +696,7 @@ Enabling [Vault kubernetes auth method](https://developer.hashicorp.com/vault/do
   ```shell
   KUBERNETES_CA_CERT=$(kubectl config view --raw --minify --flatten --output='jsonpath={.clusters[].cluster.certificate-authority-data}' | base64 --decode | awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}')
 
-  curl --cacert /etc/vault/tls/vault_ca.pem --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data '{"kubernetes_host": "'"$KUBERNETES_HOST"'", "kubernetes_ca_cert":"'"$KUBERNETES_CA_CERT"'", "token_reviewer_jwt":"'"$TOKEN_REVIEW_JWT"'"}' https://vault.picluster.ricsanfre.com:8200/v1/auth/kubernetes/config
+  curl --cacert /etc/vault/tls/vault_ca.pem --header "X-Vault-Token:$VAULT_TOKEN" --request POST --data '{"kubernetes_host": "'"$KUBERNETES_HOST"'", "kubernetes_ca_cert":"'"$KUBERNETES_CA_CERT"'", "token_reviewer_jwt":"'"$TOKEN_REVIEW_JWT"'"}' https://vault.picluster.watacoso.com:8200/v1/auth/kubernetes/config
   ```
 
 ## External Secrets Operator installation
@@ -737,7 +737,7 @@ External Secrets Operator is installed through its helm chart.
   ```shell
   curl -k --header "X-Vault-Token:$VAULT_TOKEN" --request POST \
     --data '{ "bound_service_account_names": "external-secrets", "bound_service_account_namespaces": "external-secrets", "policies": ["readonly"], "ttl" : "24h"}' \
-    https://vault.picluster.ricsanfre.com:8200/v1/auth/kubernetes/role/external-secrets
+    https://vault.picluster.watacoso.com:8200/v1/auth/kubernetes/role/external-secrets
   ```
 
 
@@ -752,7 +752,7 @@ External Secrets Operator is installed through its helm chart.
    spec:
      provider:
        vault:
-         server: "https://vault.picluster.ricsanfre.com:8200"
+         server: "https://vault.picluster.watacoso.com:8200"
          # caBundle needed if vault TLS is signed using a custom CA.
          # If Vault TLS is valid signed by Letsencrypt this is not needed?
          # ca cert base64 encoded and remobed '\n' characteres"

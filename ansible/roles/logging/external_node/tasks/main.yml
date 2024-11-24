@@ -2,7 +2,7 @@
 # Deploy fluentbit
 - name: Deploy fluentbit.
   include_role:
-    name: ricsanfre.fluentbit
+    name: watacoso.fluentbit
   vars:
     # lua scripts
     fluentbit_lua_scripts:

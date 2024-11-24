@@ -299,7 +299,7 @@ autoinstall:
   user-data:
     # Set TimeZone and Locale
     timezone: UTC
-    locale: es_ES.UTF-8
+    locale: it_IT.UTF-8
 
     # Hostname
     hostname: server_name
@@ -308,7 +308,7 @@ autoinstall:
     manage_etc_hosts: localhost
 
     users:
-      - name: ricsanfre
+      - name: watacoso
         primary_group: users
         groups: [adm, admin]
         shell: /bin/bash
@@ -341,7 +341,7 @@ For automating all this initial configuration tasks, ansible role **basic_setup*
 Cluster nodes will be configured as NTP clients using NTP server running in `gateway`
 See ["NTP Configuration instructions"](/docs/gateway/#ntp-server-configuration).
 
-NTP configuration in cluster nodes has been automated using ansible role **ricsanfre.ntp**
+NTP configuration in cluster nodes has been automated using ansible role **watacoso.ntp**
 
 ### iSCSI configuration. 
 
@@ -349,13 +349,13 @@ NTP configuration in cluster nodes has been automated using ansible role **ricsa
 
 Open-iscsi is used by Longhorn as a mechanism to expose Volumes within Kuberentes cluster. All nodes of the cluster need to be configured as iSCSI initiators, When configurin iSCSI initiator, authentication default parameters should not be included in `iscsid.conf` file and per target authentication parameters need to be specified because Longhorn local iSCSI target is not using any authentication.
 
-iSCSI initiator configuration in cluster nodes has been automated with Ansible developing the ansible role: **ricsanfre.iscsi_initiator**.
+iSCSI initiator configuration in cluster nodes has been automated with Ansible developing the ansible role: **watacoso.iscsi_initiator**.
 
 #### Raspberry PI Centralized SAN
 
 In case of Raspberry PI nodes not using dedicated disks,`node1-node6` are configured as iSCSI Initiator to use iSCSI volumes exposed by `gateway`
 
-iSCSI configuration in `node1-node6`and iSCSI LUN mount and format tasks have been automated with Ansible developing a couple of ansible roles: **ricsanfre.storage** for managing LVM and **ricsanfre.iscsi_initiator** for configuring a iSCSI initiator.
+iSCSI configuration in `node1-node6`and iSCSI LUN mount and format tasks have been automated with Ansible developing a couple of ansible roles: **watacoso.storage** for managing LVM and **watacoso.iscsi_initiator** for configuring a iSCSI initiator.
 
 Further details about iSCSI configurations and step-by-step manual instructions are defined in ["Cluster SAN installation"](/docs/san/).
 

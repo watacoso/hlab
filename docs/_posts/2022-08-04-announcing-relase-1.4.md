@@ -2,7 +2,7 @@
 layout: post
 title:  Kubernetes Pi Cluster relase v1.4
 date:   2022-08-4
-author: ricsanfre
+author: watacoso
 description: PiCluster News - announcing release v1.4
 ---
 
@@ -71,7 +71,7 @@ Since the feature has been applied, pods are gracefully shutdown and cluster rem
 | Logging | Elastic Search | 8.1.2 | Deployed with ECK Operator |
 | Logging | Kibana | 8.1.2 | Deployed with ECK Operator |
 | Logging | Fluentbit | 1.9.6 | Helm chart version: fluent-bit-0.20.4 |
-| Logging | Fluentd | 1.14 | Helm chart version: 0.3.9. [Custom docker image](https://github.com/ricsanfre/fluentd-aggregator) from official v1.14|
+| Logging | Fluentd | 1.14 | Helm chart version: 0.3.9. [Custom docker image](https://github.com/watacoso/fluentd-aggregator) from official v1.14|
 | Monitoring | Kube Prometheus Stack | 0.58.0 | Helm chart version: kube-prometheus-stack-39.1.0 |
 | Monitoring | Prometheus Operator | 0.58.0 | Installed by Kube Prometheus Stack. Helm chart version: kube-prometheus-stack-39.1.0   |
 | Monitoring | Prometheus | 2.37 | Installed by Kube Prometheus Stack. Helm chart version: kube-prometheus-stack-39.1.0 |

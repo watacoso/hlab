@@ -76,7 +76,7 @@ ArgoCD can be installed through helm chart
       ## Add ingressClassName to the Ingress
       ingressClassName: nginx
       # ingress host
-      hostname: argocd.picluster.ricsanfre.com
+      hostname: argocd.picluster.watacoso.com
       ## Default ingress path
       path: /
       pathType: Prefix
@@ -90,7 +90,7 @@ ArgoCD can be installed through helm chart
         #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API) 
         #   * 'ca-issuer' (CA-signed certificate, not valid)
         cert-manager.io/cluster-issuer: letsencrypt-issuer
-        cert-manager.io/common-name: argocd.picluster.ricsanfre.com
+        cert-manager.io/common-name: argocd.picluster.watacoso.com
   ```
 
   With this config, Application resource health check is included so App of Apps pattern can be used. See below.
@@ -144,12 +144,12 @@ Igress NGINX will be used as ingress controller, terminating TLS traffic, so Arg
     ingressClassName: nginx
     # ingress host
     hosts:
-      - argocd.picluster.ricsanfre.com
+      - argocd.picluster.watacoso.com
     ## TLS Secret Name
     tls:
       - secretName: argocd-tls
         hosts:
-          - argocd.picluster.ricsanfre.com
+          - argocd.picluster.watacoso.com
     ## Default ingress path
     paths:
       - /
@@ -161,7 +161,7 @@ Igress NGINX will be used as ingress controller, terminating TLS traffic, so Arg
       #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API) 
       #   * 'ca-issuer' (CA-signed certificate, not valid)
       cert-manager.io/cluster-issuer: letsencrypt-issuer
-      cert-manager.io/common-name: argocd.picluster.ricsanfre.com
+      cert-manager.io/common-name: argocd.picluster.watacoso.com
   ```
 
 See more details in [Argo-CD Ingress configuration doc](https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/)
@@ -171,7 +171,7 @@ See more details in [Argo-CD Ingress configuration doc](https://argo-cd.readthed
 
 Using automatic synchornization and pruning of resources might cause side effects with some of the kubernetes resources that are not created by ArgoCD.
 
-See an example of this wrong behavior in [issue #273](https://github.com/ricsanfre/pi-cluster/issues/273). ArgoCD auto-synch policy is pruning VolumeSnapshot and VolumeSnapshotContent resources that are created automatically by backup process, making backup process to fail.
+See an example of this wrong behavior in [issue #273](https://github.com/watacoso/pi-cluster/issues/273). ArgoCD auto-synch policy is pruning VolumeSnapshot and VolumeSnapshotContent resources that are created automatically by backup process, making backup process to fail.
 
 The way to solve this issue is to make ArgoCD to ignore the VolumeSnapshot and VolumeSnapshotContent resources during the synchronization process.
 
@@ -588,7 +588,7 @@ Within git repo the following directory structure can be created
     project: picluster
     source:
       path: kubernetes/bootstrap/infra/overlays/prod
-      repoURL: https://github.com/ricsanfre/pi-cluster
+      repoURL: https://github.com/watacoso/pi-cluster
       targetRevision: master
     destination:
       namespace: argocd
@@ -625,7 +625,7 @@ Within git repo the following directory structure can be created
     project: picluster
     source:
       path: kubernetes/bootstrap/apps/overlays/prod
-      repoURL: https://github.com/ricsanfre/pi-cluster
+      repoURL: https://github.com/watacoso/pi-cluster
       targetRevision: master
     destination:
       namespace: argocd
@@ -677,7 +677,7 @@ spec:
   project: picluster
   source:
     path: kubernetes/bootstrap/root-app/overlays/prod
-    repoURL: https://github.com/ricsanfre/pi-cluster
+    repoURL: https://github.com/watacoso/pi-cluster
     targetRevision: master
   destination:
     namespace: argocd

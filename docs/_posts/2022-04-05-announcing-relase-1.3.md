@@ -2,7 +2,7 @@
 layout: post
 title:  Kubernetes Pi Cluster relase v1.3
 date:   2022-04-5
-author: ricsanfre
+author: watacoso
 description: PiCluster News - announcing release v1.3
 ---
 
@@ -31,11 +31,11 @@ Adding service mesh architecture to kubernetes cluster
 
 ### Release v1.2.0 - 2022-02-03
 
-Launched of this website (picluster.ricsanfre.com) and improvements in logging and monitoring solution
+Launched of this website (picluster.watacoso.com) and improvements in logging and monitoring solution
 
 #### Release Scope:
 
-  - New project website (picluster.ricsanfre.com) created from previous documentation files using Jekyll and GitHub pages
+  - New project website (picluster.watacoso.com) created from previous documentation files using Jekyll and GitHub pages
   - Fluentbit as unique logs collector solution (Fluentbit replacing Fluentd within the cluster)
   - Adding Velero and Minio Metrics to Prometheus
   - Activating Traefik's access logs and integrate them into EFK

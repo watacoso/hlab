@@ -2,7 +2,7 @@
 layout: post
 title:  Kubernetes Pi Cluster relase v1.7
 date:   2023-06-24
-author: ricsanfre
+author: watacoso
 description: PiCluster News - announcing release v1.7
 ---
 

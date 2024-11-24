@@ -83,7 +83,7 @@ This helm chart bootstraps a Keycloak deployment on Kubernetes using as backend 
       # https://stackoverflow.com/questions/57503590/upstream-sent-too-big-header-while-reading-response-header-from-upstream-in-keyc
       nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
       nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
-    hostname: sso.picluster.ricsanfre.com
+    hostname: sso.picluster.watacoso.com
     tls: true
   ```
   
@@ -115,7 +115,7 @@ This helm chart bootstraps a Keycloak deployment on Kubernetes using as backend 
   ```
   
 - Step 8: connect to keycloak admin console
-  https://sso.picluster.ricsanfre.com
+  https://sso.picluster.watacoso.com
 
   Log in using 'admin' user and password obtained in step 7.
 
@@ -226,7 +226,7 @@ For example, using CloudNative-PG a, keycload database cluster can be created. S
           compression: bzip2
           maxParallel: 8
         destinationPath: s3://k3s-barman/keycloak-db
-        endpointURL: https://s3.ricsanfre.com:9091
+        endpointURL: https://s3.watacoso.com:9091
         s3Credentials:
           accessKeyId:
             name: keycloak-minio-secret
@@ -264,7 +264,7 @@ For example, using CloudNative-PG a, keycload database cluster can be created. S
 
 - Step 1: Login as admin to Keycloak console
 
-  Open URL: https://sso.picluster.ricsanfre.com
+  Open URL: https://sso.picluster.watacoso.com
 
 - Step 9: Create a new realm 'picluster'
   
@@ -301,7 +301,7 @@ Follow procedure in [Oauth2-Proxy: Keycloak OIDC Auth Provider Configuration](ht
   ![oauth2-proxy-client-3](/assets/img/oauth2-proxy-client-3.png)
   
   - Provide the following 'Logging settings'
-    - Valid redirect URIs: https://ouath2-proxy.picluster.ricsanfre.com/oauth2/callback
+    - Valid redirect URIs: https://ouath2-proxy.picluster.watacoso.com/oauth2/callback
   - Save the configuration.
 
 - Step 2: Locate oauth2-proxy client credentials
@@ -426,18 +426,18 @@ New ConfigMap, containing the JSON files to be imported need to be mounted by ke
       # Provider config
       provider="keycloak-oidc"
       provider_display_name="Keycloak"
-      redirect_url="https://oauth2-proxy.picluster.ricsanfre.com/oauth2/callback"
-      oidc_issuer_url="https://sso.picluster.ricsanfre.com/realms/picluster"
+      redirect_url="https://oauth2-proxy.picluster.watacoso.com/oauth2/callback"
+      oidc_issuer_url="https://sso.picluster.watacoso.com/realms/picluster"
       code_challenge_method="S256"
       ssl_insecure_skip_verify=true
       # Upstream config
       http_address="0.0.0.0:4180"
       upstreams="file:///dev/null"
       email_domains=["*"]
-      cookie_domains=["picluster.ricsanfre.com"]
+      cookie_domains=["picluster.watacoso.com"]
       cookie_secure=false
       scope="openid"
-      whitelist_domains=[".picluster.ricsanfre.com"]
+      whitelist_domains=[".picluster.watacoso.com"]
       insecure_oidc_allow_unverified_email="true"
 
   sessionStorage:
@@ -460,13 +460,13 @@ New ConfigMap, containing the JSON files to be imported need to be mounted by ke
       #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API)
       #   * 'ca-issuer' (CA-signed certificate, not valid)
       cert-manager.io/cluster-issuer: letsencrypt-issuer
-      cert-manager.io/common-name: oauth2-proxy.picluster.ricsanfre.com
+      cert-manager.io/common-name: oauth2-proxy.picluster.watacoso.com
       nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
     hosts:
-      - oauth2-proxy.picluster.ricsanfre.com
+      - oauth2-proxy.picluster.watacoso.com
     tls:
       - hosts:
-          - oauth2-proxy.picluster.ricsanfre.com
+          - oauth2-proxy.picluster.watacoso.com
         secretName: oauth2-proxy-tls  
   ```
 
@@ -545,7 +545,7 @@ As workaround, the issue can be solved providing the credentials in a external s
 Following annotations need to be added to any Ingress resource to use Oauth2-proxy authentication
 
 ```yaml
-nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.picluster.ricsanfre.com/oauth2/start?rd=https://$host$request_uri
+nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.picluster.watacoso.com/oauth2/start?rd=https://$host$request_uri
 nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.oauth2-proxy.svc.cluster.local/oauth2/auth
 nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
 nginx.ingress.kubernetes.io/auth-response-headers: Authorization

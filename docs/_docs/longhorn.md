@@ -76,7 +76,7 @@ Installation using `Helm` (Release 3):
     ingressClassName: nginx
 
     # ingress host
-    host: longhorn.picluster.ricsanfre.com
+    host: longhorn.picluster.watacoso.com
 
     ## Set this to true in order to enable TLS on the ingress record
     tls: true
@@ -98,13 +98,13 @@ Installation using `Helm` (Release 3):
       #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API) 
       #   * 'ca-issuer' (CA-signed certificate, not valid)
       cert-manager.io/cluster-issuer: letsencrypt-issuer
-      cert-manager.io/common-name: longhorn.picluster.ricsanfre.com
+      cert-manager.io/common-name: longhorn.picluster.watacoso.com
   ```
   With this configuration:
 
   - Longhorn is configured to use `/storage` as default path for storing data (`defaultSettings.    defaultDataPath`)
 
-  - Ingress resource is created to make Longhorn front-end available through the URL `longhorn.picluster.ricsanfre.com`. Ingress resource for NGINX (`ingress`) is annotated so, basic authentication is used and a Valid TLS certificate is generated using Cert-Manager for `longhorn.picluster.ricsanfre.com` host
+  - Ingress resource is created to make Longhorn front-end available through the URL `longhorn.picluster.watacoso.com`. Ingress resource for NGINX (`ingress`) is annotated so, basic authentication is used and a Valid TLS certificate is generated using Cert-Manager for `longhorn.picluster.watacoso.com` host
 
 - Step 5: Install Longhorn in the longhorn-system namespace, using Helm:
 
@@ -127,7 +127,7 @@ Installation using `Helm` (Release 3):
 
 ## Configuring acces to Longhorn UI (Only Traefik Ingress)
 
-Create a Ingress rule to make Longhorn front-end available through the Ingress Controller (Traefik) using a specific URL (`longhorn.picluster.ricsanfre.com`), mapped by DNS to Traefik Load Balancer external IP.
+Create a Ingress rule to make Longhorn front-end available through the Ingress Controller (Traefik) using a specific URL (`longhorn.picluster.watacoso.com`), mapped by DNS to Traefik Load Balancer external IP.
 
 Longhorn backend is providing not secure communications (HTTP traffic) and thus Ingress resource will be configured to enable HTTPS (Traefik TLS end-point) and redirect all HTTP traffic to HTTPS.
 Since Longhorn frontend does not provide any authentication mechanism, Traefik HTTP basic authentication will be configured.
@@ -169,14 +169,14 @@ There is a known issue with accessing Longhorn UI from Traefik 2.x that makes Lo
         longhorn-system-svc-longhorn-headers@kubernetescrd
       # Enable cert-manager to create automatically the SSL certificate and store in Secret
       cert-manager.io/cluster-issuer: ca-issuer
-      cert-manager.io/common-name: longhorn.picluster.ricsanfre.com
+      cert-manager.io/common-name: longhorn.picluster.watacoso.com
   spec:
     tls:
     - hosts:
-      - storage.picluster.ricsanfre.com
+      - storage.picluster.watacoso.com
       secretName: storage-tls
     rules:
-    - host: longhorn.picluster.ricsanfre.com
+    - host: longhorn.picluster.watacoso.com
       http:
         paths:
         - path: /
@@ -200,7 +200,7 @@ There is a known issue with accessing Longhorn UI from Traefik 2.x that makes Lo
       traefik.ingress.kubernetes.io/router.entrypoints: web
   spec:
     rules:
-      - host: longhorn.picluster.ricsanfre.com
+      - host: longhorn.picluster.watacoso.com
         http:
           paths:
           - path: /

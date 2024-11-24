@@ -81,7 +81,7 @@ Kube-prometheus stack can be installed using helm [kube-prometheus-stack](https:
   alertmanager:
     alertmanagerSpec:
       # Subpath /alertmanager configuration
-      externalUrl: http://monitor.picluster.ricsanfre.com/alertmanager/
+      externalUrl: http://monitor.picluster.watacoso.com/alertmanager/
       routePrefix: /
       # PVC configuration
       storage:
@@ -104,7 +104,7 @@ Kube-prometheus stack can be installed using helm [kube-prometheus-stack](https:
   prometheus:
     prometheusSpec:
       # Subpath /prometheus configuration
-      externalUrl: http://monitoring.picluster.ricsanfre.com/prometheus/
+      externalUrl: http://monitoring.picluster.watacoso.com/prometheus/
       routePrefix: /
       # Resources request and limits
       resources:
@@ -148,7 +148,7 @@ Kube-prometheus stack can be installed using helm [kube-prometheus-stack](https:
     # Configuring grafana to run behind a proxy under a subpath
     grafana.ini:
       server:
-        domain: monitoring.picluster.ricsanfre.com
+        domain: monitoring.picluster.watacoso.com
         root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana/"
         # Running Grafana behind proxy rewrite path
         # https://grafana.com/tutorials/run-grafana-behind-a-proxy/
@@ -266,13 +266,13 @@ Kube-prometheus stack can be installed using helm [kube-prometheus-stack](https:
 
 Enable external access to Prometheus, Grafana and AlertManager through Ingress Controller.
 
-Instead of using separate DNS domains to access the three components, Prometheus, Alertmanager and Grafana are configured to run behind NGINX HTTP Proxy using a unique domain,`monitoring.picluster.ricsanfre.com`, with different subpath for each component:
+Instead of using separate DNS domains to access the three components, Prometheus, Alertmanager and Grafana are configured to run behind NGINX HTTP Proxy using a unique domain,`monitoring.picluster.watacoso.com`, with different subpath for each component:
 
-- Grafana: `https://monitoring.picluster.ricsanfre.com/grafana`
-- Prometheus: `https://monitoring.picluster.ricsanfre.com/prometheus`
-- Alertmanager: `https://monitoring.picluster.ricsanfre.com/alertmanager`
+- Grafana: `https://monitoring.picluster.watacoso.com/grafana`
+- Prometheus: `https://monitoring.picluster.watacoso.com/prometheus`
+- Alertmanager: `https://monitoring.picluster.watacoso.com/alertmanager`
 
-DNS domain `monitoring.picluster.ricsanfre.com` must be mapped, in cluster DNS server configuration, to NGINX Load Balancer service extenal IP.
+DNS domain `monitoring.picluster.watacoso.com` must be mapped, in cluster DNS server configuration, to NGINX Load Balancer service extenal IP.
 
 Prometheus, Grafana and alertmanager backend are not providing secure communications (HTTP traffic) and thus Ingress resource will be configured to enable HTTPS (NGINX TLS end-point) and redirect all HTTP traffic to HTTPS.
 
@@ -297,15 +297,15 @@ Ingress [NGINX rewrite rules](https://kubernetes.github.io/ingress-nginx/example
       nginx.ingress.kubernetes.io/rewrite-target: /$1
       # Enable cert-manager to create automatically the SSL certificate and store in Secret
       cert-manager.io/cluster-issuer: ca-issuer
-      cert-manager.io/common-name: monitoring.picluster.ricsanfre.com
+      cert-manager.io/common-name: monitoring.picluster.watacoso.com
   spec:
     ingressClassName: nginx
     tls:
       - hosts:
-          - monitoring.picluster.ricsanfre.com
+          - monitoring.picluster.watacoso.com
         secretName: monitoring-tls
     rules:
-      - host: monitoring.picluster.ricsanfre.com
+      - host: monitoring.picluster.watacoso.com
         http:
           paths:
             - path: /grafana/(.*)
@@ -332,15 +332,15 @@ Ingress [NGINX rewrite rules](https://kubernetes.github.io/ingress-nginx/example
       nginx.ingress.kubernetes.io/auth-secret: nginx/basic-auth-secret
       # Enable cert-manager to create automatically the SSL certificate and store in Secret
       cert-manager.io/cluster-issuer: ca-issuer
-      cert-manager.io/common-name: monitoring.picluster.ricsanfre.com
+      cert-manager.io/common-name: monitoring.picluster.watacoso.com
   spec:
     ingressClassName: nginx
     tls:
       - hosts:
-          - monitoring.picluster.ricsanfre.com
+          - monitoring.picluster.watacoso.com
         secretName: monitoring-tls
     rules:
-      - host: monitoring.picluster.ricsanfre.com
+      - host: monitoring.picluster.watacoso.com
         http:
           paths:
             - path: /prometheus/(.*)
@@ -363,15 +363,15 @@ Ingress [NGINX rewrite rules](https://kubernetes.github.io/ingress-nginx/example
       nginx.ingress.kubernetes.io/rewrite-target: /$1
       # Enable cert-manager to create automatically the SSL certificate and store in Secret
       cert-manager.io/cluster-issuer: ca-issuer
-      cert-manager.io/common-name: monitoring.picluster.ricsanfre.com
+      cert-manager.io/common-name: monitoring.picluster.watacoso.com
   spec:
     ingressClassName: nginx
     tls:
       - hosts:
-          - monitoring.picluster.ricsanfre.com
+          - monitoring.picluster.watacoso.com
         secretName: monitoring-tls
     rules:
-      - host: monitoring.picluster.ricsanfre.com
+      - host: monitoring.picluster.watacoso.com
         http:
           paths:
             - path: /alertmanager/(.*)
@@ -654,7 +654,7 @@ grafana:
   # Configuring /grafana subpath
   grafana.ini:
     server:
-      domain: monitoring.picluster.ricsanfre.com
+      domain: monitoring.picluster.watacoso.com
       root_url: "%(protocol)s://%(domain)s:%(http_port)s/grafana/"
       serve_from_sub_path: true
   # Admin user password
@@ -735,10 +735,10 @@ Follow procedure in [Grafana documentation: Configure Keycloak OAuth2 authentica
   ![grafana-client-3](/assets/img/grafana-keycloak-3.png)
 
   - Provide the following 'Logging settings'
-    - Valid redirect URIs: https://monitoring.picluster.ricsanfre.com/grafana/login/generic_oauth
-    - Home URL: https://monitoring.picluster.ricsanfre.com/grafana
-    - Root URL: https://monitoring.picluster.ricsanfre.com/grafana
-    - Web Origins: https://monitoring.picluster.ricsanfre.com/grafana
+    - Valid redirect URIs: https://monitoring.picluster.watacoso.com/grafana/login/generic_oauth
+    - Home URL: https://monitoring.picluster.watacoso.com/grafana
+    - Root URL: https://monitoring.picluster.watacoso.com/grafana
+    - Web Origins: https://monitoring.picluster.watacoso.com/grafana
   - Save the configuration.
 
 - Step 3: Locate grafana client credentials
@@ -784,7 +784,7 @@ Add the following configuration to grafana helm chart
     grafana.ini:
       server:
         # Configuring /grafana subpath
-        domain: monitoring.picluster.ricsanfre.com
+        domain: monitoring.picluster.watacoso.com
         root_url: "https://%(domain)s/grafana/"
         # rewrite rules configured in nginx rules
         # https://grafana.com/tutorials/run-grafana-behind-a-proxy/
@@ -800,11 +800,11 @@ Add the following configuration to grafana helm chart
         email_attribute_path: email
         login_attribute_path: username
         name_attribute_path: full_name
-        auth_url: https://sso.picluster.ricsanfre.com/realms/picluster/protocol/openid-connect/auth
-        token_url: https://sso.picluster.ricsanfre.com/realms/picluster/protocol/openid-connect/token
-        api_url: https://sso.picluster.ricsanfre.com/realms/picluster/protocol/openid-connect/userinfo
+        auth_url: https://sso.picluster.watacoso.com/realms/picluster/protocol/openid-connect/auth
+        token_url: https://sso.picluster.watacoso.com/realms/picluster/protocol/openid-connect/token
+        api_url: https://sso.picluster.watacoso.com/realms/picluster/protocol/openid-connect/userinfo
         role_attribute_path: contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
-        signout_redirect_url: https://sso.picluster.ricsanfre.com/realms/picluster/protocol/openid-connect/logout?client_id=grafana&post_logout_redirect_uri=https%3A%2F%2Fmonitoring.picluster.ricsanfre.com%2Fgrafana%2Flogin%2Fgeneric_oauth
+        signout_redirect_url: https://sso.picluster.watacoso.com/realms/picluster/protocol/openid-connect/logout?client_id=grafana&post_logout_redirect_uri=https%3A%2F%2Fmonitoring.picluster.watacoso.com%2Fgrafana%2Flogin%2Fgeneric_oauth
 ```
 
 Where `client_secret` is obtained from keycloak client configuration: step 3.
@@ -1016,7 +1016,7 @@ Datasource named ${DS_PROMETHEUS} was not found
 
 There is an open [Grafana´s issue](https://github.com/grafana/grafana/issues/10786), asking for support of dasboard variables in dashboard provisioning.
 
-As a workarround, json files can be modified before inserting them into ConfigMap yaml file, in order to detect DS_PROMETHEUS datasource. See issue [#18](https://github.com/ricsanfre/pi-cluster/issues/18) for more details
+As a workarround, json files can be modified before inserting them into ConfigMap yaml file, in order to detect DS_PROMETHEUS datasource. See issue [#18](https://github.com/watacoso/pi-cluster/issues/18) for more details
 
 Modify each json file, containing `DS_PROMETHEUS` input variable within `__input` json key, adding the following code to `templating.list` key
 
@@ -1259,7 +1259,7 @@ Thus, the solution is to scrape only the metrics endpoints available in kubelet 
 
 {{site.data.alerts.note}}
 
-See issue [#67](https://github.com/ricsanfre/pi-cluster/issues/67) for details about the analysis of the duplicates and the proposed solution
+See issue [#67](https://github.com/watacoso/pi-cluster/issues/67) for details about the analysis of the duplicates and the proposed solution
 
 {{site.data.alerts.end}}
 
@@ -1864,7 +1864,7 @@ The Prometheus custom resource definition (CRD), `ServiceMonitoring` will be use
 
 - Check target is automatically discovered in Prometheus UI
 
-  http://prometheus.picluster.ricsanfre/targets
+  http://prometheus.picluster.watacoso/targets
 
 
 #### Velero Grafana dashboard
@@ -2074,7 +2074,7 @@ Service monitoring include two endpoints. Fluentbit metrics endpoint (`/api/v1/m
 
 #### Fluentd Monitoring
 
-In order to monitor Fluentd with Prometheus, `fluent-plugin-prometheus` plugin need to be installed and configured. The custom docker image [fluentd-aggregator](https://github.com/ricsanfre/fluentd-aggregator), I have developed for this project, has this plugin installed.
+In order to monitor Fluentd with Prometheus, `fluent-plugin-prometheus` plugin need to be installed and configured. The custom docker image [fluentd-aggregator](https://github.com/watacoso/fluentd-aggregator), I have developed for this project, has this plugin installed.
 
 fluentd.conf file must include configuration of this plugin. It provides '/metrics' endpoint on port 24231.
 

@@ -29,14 +29,14 @@ Ubuntu cloud-init configuration files within the image (`/boot/user-data` and `/
 
   - Modify file `/boot/user-data`
 
-    As an example this cloud-init `user-data` file, set hostname, locale and timezone and specify a new user, `ricsanfre` (removing default `ubuntu` user) with its ssh public keys
+    As an example this cloud-init `user-data` file, set hostname, locale and timezone and specify a new user, `watacoso` (removing default `ubuntu` user) with its ssh public keys
     
     ```yml
     #cloud-config
 
     # Set TimeZone and Locale
     timezone: Europe/Madrid
-    locale: es_ES.UTF-8
+    locale: it_IT.UTF-8
 
     # Hostname
     hostname: gateway
@@ -46,7 +46,7 @@ Ubuntu cloud-init configuration files within the image (`/boot/user-data` and `/
 
     users:
       # not using default ubuntu user
-      - name: ricsanfre
+      - name: watacoso
         primary_group: users
         groups: [adm, admin]
         shell: /bin/bash
@@ -62,7 +62,7 @@ Ubuntu cloud-init configuration files within the image (`/boot/user-data` and `/
 
     {{site.data.alerts.important}}
 
-    Before applying the provided cloud-init files remember to change user name (`ricsanfre`) and `ssh_authorized_keys` field. Your own user_name and ssh public keys must be included.
+    Before applying the provided cloud-init files remember to change user name (`watacoso`) and `ssh_authorized_keys` field. Your own user_name and ssh public keys must be included.
 
     `timezone` and `locale` can be changed as well to fit your environment. 
 

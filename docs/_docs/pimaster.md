@@ -14,9 +14,9 @@ As OS for `pimaster` a Ubuntu 20.04 LTS or 22.04 LTS server can be used.
 
 {{site.data.alerts.tip}}
 
-This server, `pimaster`, can be automatically provisioned as a Virtual Box VM in a Windows Laptop using a ubuntu cloud image using the procedure described in [Github repository ubuntu-clod-vbox](https://github.com/ricsanfre/ubuntu-cloud-vbox).
+This server, `pimaster`, can be automatically provisioned as a Virtual Box VM in a Windows Laptop using a ubuntu cloud image using the procedure described in [Github repository ubuntu-clod-vbox](https://github.com/watacoso/ubuntu-cloud-vbox).
 
-Using that provisioning script a cloud-init user-data booting file can be created to automate the installation tasks of all component needed (Docker, Vagrant, KVM, Ansible, etc.). Check this [template](https://github.com/ricsanfre/ubuntu-cloud-vbox/blob/master/templates/user-data-dev-server.yml) as an example.
+Using that provisioning script a cloud-init user-data booting file can be created to automate the installation tasks of all component needed (Docker, Vagrant, KVM, Ansible, etc.). Check this [template](https://github.com/watacoso/ubuntu-cloud-vbox/blob/master/templates/user-data-dev-server.yml) as an example.
 
 {{site.data.alerts.end}}
 
@@ -466,9 +466,9 @@ Linux GPG will be used to encrypt Ansible Vault passphrase and automatically obt
       GnuPG needs to construct a user ID to identify your key.
 
       Real name: Ricardo
-      Email address: ricsanfre@gmail.com
+      Email address: watacoso@gmail.com
       You selected this USER-ID:
-          "Ricardo <ricsanfre@gmail.com>"
+          "Ricardo <watacoso@gmail.com>"
 
       Change (N)ame, (E)mail, or (O)kay/(Q)uit? O
       We need to generate a lot of random bytes. It is a good idea to perform
@@ -487,7 +487,7 @@ Linux GPG will be used to encrypt Ansible Vault passphrase and automatically obt
 
       pub   rsa3072 2021-08-13 [SC] [expires: 2023-08-13]
             A4745167B84C8C9A227DC898D59E854B5DD93199
-      uid                      Ricardo <ricsanfre@gmail.com>
+      uid                      Ricardo <watacoso@gmail.com>
       sub   rsa3072 2021-08-13 [E] [expires: 2023-08-13]
 
       ```
@@ -687,7 +687,7 @@ Installation of the whole Ansible environment can be done using a python virtual
 
 Authentication using SSH keys will be the only mechanism available to login to any server in the Pi Cluster.
 
-In order to improve security, default UNIX user, `ubuntu`, created by cloud images will be disabled. A new unix user, `ricsanfre`, will be created in all servers with root privileges (sudo permissions). This user will be used to connect to the servers from my home laptop and to automate configuration activities using Ansible (used as `ansible_remote_user` when connecting).
+In order to improve security, default UNIX user, `ubuntu`, created by cloud images will be disabled. A new unix user, `watacoso`, will be created in all servers with root privileges (sudo permissions). This user will be used to connect to the servers from my home laptop and to automate configuration activities using Ansible (used as `ansible_remote_user` when connecting).
 
 ssh private/public keys will be created for the different purposes (admin SSH connection and Ansible connection). Public ssh keys can be added to the UNIX user created in all servers as ssh-authorized-keys to enable passwordless SSH connection.
 
@@ -700,7 +700,7 @@ For generating SSH private/public key in Windows, Putty Key Generator can be use
 
 ![ubuntu-SSH-key-generation](/assets/img/ubuntu-user-SSH-key-generation.png "SSH Key Generation")
 
-Public-key string will be used as `ssh_authorized_keys` of the privileged user (i.e.: ricsanfre) in cloud-init `user-data`
+Public-key string will be used as `ssh_authorized_keys` of the privileged user (i.e.: watacoso) in cloud-init `user-data`
 
 For generating ansible SSH keys in Linux server execute command:
 

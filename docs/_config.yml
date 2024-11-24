@@ -1,21 +1,21 @@
 # Site settings
 title: Pi Kubernetes Cluster
-email: admin@ricsanfre.com
+email: admin@watacoso.com
 description: >
   How to build a hybrid x86/ARM Kubernetes cluster at home, using Raspberry Pi and refurbished mini PCs, and automate its deployment and configuration applying IaC (infrastructure as a code) and GitOps methodologies with tools like Ansible and Argo CD.
 lang: en-US
 
 author:
   name: Ricardo Sanchez
-  twitter: ricsanfre
+  twitter: watacoso
 twitter:
-  username: ricsanfre
+  username: watacoso
   card: summary
 social:
   name: Ricardo Sanchez
   links:
-    - https://twitter.com/ricsanfre
-    - https://github.com/ricsanfre
+    - https://twitter.com/watacoso
+    - https://github.com/watacoso
 
 # Timezone
 timezone: Europe/Madrid
@@ -23,26 +23,26 @@ timezone: Europe/Madrid
 # Enable matoma analytics
 matoma_analytics: true
 matoma:
-  url: matomo.ricsanfre.com
+  url: matomo.watacoso.com
   site_id: 1
 
 # remark42 comments
 remark42:
-  url: https://remark42.ricsanfre.com
+  url: https://remark42.watacoso.com
   site_id: picluster
 
 # giscus comments
 giscus:
-  repo: ricsanfre/pi-cluster
+  repo: watacoso/pi-cluster
   repo_id: MDEwOlJlcG9zaXRvcnkzNzk5ODc5NzY=
   category: Announcements
   category_id: DIC_kwDOFqYoCM4CUyX7
 
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: https://picluster.ricsanfre.com # the base hostname & protocol for your site
-git_address: https://github.com/ricsanfre/pi-cluster
-git_edit_address: https://github.com/ricsanfre/pi-cluster/blob/master
+url: https://picluster.watacoso.com # the base hostname & protocol for your site
+git_address: https://github.com/watacoso/pi-cluster
+git_edit_address: https://github.com/watacoso/pi-cluster/blob/master
 
 # theme options from https://bootswatch.com/3/
 # comment out this to use default Bootstrap

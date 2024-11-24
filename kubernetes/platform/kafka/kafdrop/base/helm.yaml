@@ -11,7 +11,7 @@ spec:
       version: 0.1.0
       sourceRef:
         kind: HelmRepository
-        name: ricsanfre
+        name: watacoso
         namespace: flux-system
   releaseName: kafdrop
   targetNamespace: kafka

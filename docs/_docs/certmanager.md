@@ -482,7 +482,7 @@ To configure DynDNS IONOS provider, follow these [instructions](https://www.iono
 - Step 2: Configure domain to be dynamically updated
 
   ```shell
-  domain-connect-dyndns setup --domain picluster.ricsanfre.com
+  domain-connect-dyndns setup --domain picluster.watacoso.com
   ```
 
 - Step 3: Update it

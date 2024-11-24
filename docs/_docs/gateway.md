@@ -94,7 +94,7 @@ This command:
   - then creates a new partition starting 30GiB into the disk filling the rest of the disk (-n=0:10G:0 option)
   - And labels it as an LVM partition (-t option)
 
-LVM logical volumes creation using the new partition,`/dev/sda3`, (LUNs) have been automated with Ansible developing the ansible role: **ricsanfre.storage** for managing LVM.
+LVM logical volumes creation using the new partition,`/dev/sda3`, (LUNs) have been automated with Ansible developing the ansible role: **watacoso.storage** for managing LVM.
 
 Specific ansible variables to be used by this role are stored in [`ansible/vars/centralized_san/centralized_san_target.yml`]({{ site.git_edit_address }}/ansible/vars/centralized_san/centralized_san_target.yml)
 
@@ -135,7 +135,7 @@ For automating all this initial configuration tasks, ansible role **basic_setup*
 
 ## Router/Firewall Configuration
 
-For automating configuration tasks, ansible role [**ricsanfre.firewall**](https://galaxy.ansible.com/ricsanfre/firewall) has been developed.
+For automating configuration tasks, ansible role [**watacoso.firewall**](https://galaxy.ansible.com/watacoso/firewall) has been developed.
 
 
 ### Enabling IP Forwarding
@@ -163,7 +163,7 @@ But for configuring router/firewall rules, [**nftables**](https://www.netfilter.
 
 `nftables` is the succesor of `iptables` and it allows for much more flexible, easy to use, scalable and performance packet classification. Both of them are based on `netfilter` kernel module and according to their community maintaners [netfilter](https://www.netfilter.org) in nftables is "where all the fancy new features are developed".
 
-In Debian, since 11 release (Buster), `nftables` is the default and recommended firewall package replacing `iptables` (see https://wiki.debian.org/nftables). Starting with Debian Buster, nf_tables is the default backend when using iptables, by means of the iptables-nft layer (i.e, using iptables syntax with the nf_tables kernel subsystem). In Ubuntu, since Ubuntu 20.10, `ip-tables` package is including [`xtables-nft`](https://manpages.ubuntu.com/manpages/jammy/en/man8/iptables-nft.8.html) commands which are versions of iptables commands but using nftables kernel api for enabling the migration from iptables to nftables.
+In Debian, since 11 release (Buster), `nftables` is the default and recommended firewall package replacing `iptables` (see https://wiki.debian.org/nftables). Starting with Debian Buster, nf_tables is the default backend when using iptables, by means of the iptables-nft layer (i.e, using iptables syntax with the nf_tables kernel subsystem). In Ubuntu, since Ubuntu 20.10, `ip-tables` package is including [`xtables-nft`](https://manpages.ubuntu.com/manpages/plucky/en/man8/iptables-nft.8.html) commands which are versions of iptables commands but using nftables kernel api for enabling the migration from iptables to nftables.
 
 `nftables` seems to have the support of the Linux community and iptables probably will be deprecated in future releases.
 
@@ -472,7 +472,7 @@ This route need to be added to my Laptop and the VM running `pimaster` node
 ## DHCP/DNS Configuration
 
 `dnsmasq` will be used as lightweigh DHCP/DNS server
-For automating configuration tasks, ansible role [**ricsanfre.dnsmasq**](https://galaxy.ansible.com/ricsanfre/dnsmasq) has been developed.
+For automating configuration tasks, ansible role [**watacoso.dnsmasq**](https://galaxy.ansible.com/watacoso/dnsmasq) has been developed.
 
 - Step 1. Install dnsmasq
 
@@ -507,9 +507,9 @@ For automating configuration tasks, ansible role [**ricsanfre.dnsmasq**](https:/
   # Never forward plain names (without a dot or domain part)
   domain-needed
 
-  local=/picluster.ricsanfre.com/
+  local=/picluster.watacoso.com/
 
-  domain=picluster.ricsanfre.com
+  domain=picluster.watacoso.com
 
   # Never forward addresses in the non-routed address spaces.
   bogus-priv
@@ -536,20 +536,20 @@ For automating configuration tasks, ansible role [**ricsanfre.dnsmasq**](https:/
   dhcp-host=94:a6:7e:7c:c7:69,10.0.0.2
 
   # DNS configuration based on inventory
-  host-record=gateway.picluster.ricsanfre.com,10.0.0.1
-  host-record=pimaster.picluster.ricsanfre.com,10.0.0.10
-  host-record=node1.picluster.ricsanfre.com,10.0.0.11
-  host-record=node2.picluster.ricsanfre.com,10.0.0.12
-  host-record=node3.picluster.ricsanfre.com,10.0.0.13
-  host-record=node4.picluster.ricsanfre.com,10.0.0.14
-  host-record=node5.picluster.ricsanfre.com,10.0.0.15
-  host-record=node6.picluster.ricsanfre.com,10.0.0.16
+  host-record=gateway.picluster.watacoso.com,10.0.0.1
+  host-record=pimaster.picluster.watacoso.com,10.0.0.10
+  host-record=node1.picluster.watacoso.com,10.0.0.11
+  host-record=node2.picluster.watacoso.com,10.0.0.12
+  host-record=node3.picluster.watacoso.com,10.0.0.13
+  host-record=node4.picluster.watacoso.com,10.0.0.14
+  host-record=node5.picluster.watacoso.com,10.0.0.15
+  host-record=node6.picluster.watacoso.com,10.0.0.16
 
   # Adding additional DNS
   # NTP Server
-  host-record=ntp.picluster.ricsanfre.com,10.0.0.1
+  host-record=ntp.picluster.watacoso.com,10.0.0.1
   # DNS Server
-  host-record=dns.picluster.ricsanfre.com,10.0.0.1
+  host-record=dns.picluster.watacoso.com,10.0.0.1
   ```
 
   {{site.data.alerts.note}}
@@ -559,14 +559,14 @@ For automating configuration tasks, ansible role [**ricsanfre.dnsmasq**](https:/
   - S3/Vault service DNS name pointing to `node1`
     ```
     # S3 Server
-    host-record=s3.picluster.ricsanfre.com,10.0.0.11
+    host-record=s3.picluster.watacoso.com,10.0.0.11
     # Vault server
-    host-record=vault.picluster.ricsanfre.com,10.0.0.11
+    host-record=vault.picluster.watacoso.com,10.0.0.11
     ```
   - Monitoring DNS service pointing to Ingress Controller IP address (from MetaLB pool)
     ```
     # Monitoring
-    host-record=monitoring.picluster.ricsanfre.com,10.0.0.100
+    host-record=monitoring.picluster.watacoso.com,10.0.0.100
     ```
 
   {{site.data.alerts.end}}
@@ -666,7 +666,7 @@ Add the following lines
 ```
 [Resolve]
 DNS=10.0.0.1
-Domains=picluster.ricsanfre.com
+Domains=picluster.watacoso.com
 ```
 
 Restart systemd-resolve service
@@ -685,7 +685,7 @@ Since ntp and ntpdate are deprecated **chrony** package will be used for configu
 
 **gateway** will be hosting a NTP server and the rest of cluster nodes will be configured as NTP Clients.
 
-For automating ntp configuration tasks on all nodes (gateway and node1-5), ansible role [**ricsanfre.ntp**](https://galaxy.ansible.com/ricsanfre/ntp) has been created.
+For automating ntp configuration tasks on all nodes (gateway and node1-5), ansible role [**watacoso.ntp**](https://galaxy.ansible.com/watacoso/ntp) has been created.
 
 - Step 1. Install chrony
 
@@ -750,7 +750,7 @@ Check time synchronization with Chronyc
 
 `gateway` has to be configured as iSCSI Target to export LUNs mounted by `node1-node6`
 
-iSCSI configuration in `gateway` has been automated developing a couple of ansible roles: **ricsanfre.storage** for managing LVM and **ricsanfre.iscsi_target** for configuring a iSCSI target.
+iSCSI configuration in `gateway` has been automated developing a couple of ansible roles: **watacoso.storage** for managing LVM and **watacoso.iscsi_target** for configuring a iSCSI target.
 
 Specific `gateway` ansible variables to be used by these roles are stored in [`ansible/vars/centralized_san/centralized_san_target.yml`]({{ site.git_edit_address }}/ansible/vars/centralized_san/centralized_san_target.yml)
 

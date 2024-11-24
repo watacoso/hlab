@@ -1,6 +1,6 @@
 # Pi-Cluster Content Site
 
-This repository contains the Jekyll configuration and content behind the [https://picluster.ricsanfre.com/](https://picluster.ricsanfre.com/) site.
+This repository contains the Jekyll configuration and content behind the [https://picluster.watacoso.com/](https://picluster.watacoso.com/) site.
 
 ## Running Locally
 

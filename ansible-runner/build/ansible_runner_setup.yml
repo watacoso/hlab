@@ -14,4 +14,4 @@
     kubectl_checksum_binary: "sha512:0e1c51cf19254d8615abb0c2cbc6ed980ee41d0874a90ef47705ee0f2cc787b476fd32d56a926564334f4a01aa34ec480a4edcf60cd1b7fe1d734b2cc805774b"
     helm_version: 'v3.15.3'
   roles:
-    - role: ricsanfre.k8s_cli
+    - role: watacoso.k8s_cli

@@ -280,7 +280,7 @@ loki:
       ruler: k3s-loki
     type: s3
     s3:
-      endpoint: s3.picluster.ricsanfre.com:9091
+      endpoint: s3.picluster.watacoso.com:9091
       region: eu-west-1
       secretAccessKey: ${MINIO_SECRET_ACCESS_KEY}
       accessKeyId: ${MINIO_ACCESS_KEY_ID}

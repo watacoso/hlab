@@ -232,7 +232,7 @@ storage:
     backend: s3
     s3:
       bucket: k3s-tempo
-      endpoint: s3.picluster.ricsanfre.com:9091
+      endpoint: s3.picluster.watacoso.com:9091
       region: eu-west-1
       access_key: ${MINIO_ACCESS_KEY_ID}
       secret_key: ${MINIO_SECRET_ACCESS_KEY}
@@ -444,7 +444,7 @@ controller:
 
 In this case Zipkin tempo embedded collector, ditributor, was used as destination. Access logs format was also configured to include B3 context. Opentrace context (x_b3_traceid and x_b3_spanId) appears as field in the logs: `trace_id` and `span_id`
 
-NGINX configuration using OpenTracing protocol is not working since Ingress NGINX 1.10. See [issue #329](https://github.com/ricsanfre/pi-cluster/issues/329).
+NGINX configuration using OpenTracing protocol is not working since Ingress NGINX 1.10. See [issue #329](https://github.com/watacoso/pi-cluster/issues/329).
 
 
 {{site.data.alerts.end}}
@@ -512,7 +512,7 @@ Because of the deprecation of OpenTracing in Ingress NGINX release 1.10. E2E tra
 
 Emojivoto is using OpenTracing, B3 context propagation whereas linkerd and Nginx are using W3C. So tracing context is not being propagated from NGINX to emojivoto microservices.
 
-See [issue #329](https://github.com/ricsanfre/pi-cluster/issues/329).
+See [issue #329](https://github.com/watacoso/pi-cluster/issues/329).
 
 A different testing application, using OpenTelemetry instead of Opentracing, is needed.
 
@@ -546,7 +546,7 @@ Linkerd's testing application emojivoto can be used to test the tracing solution
   spec:
     ingressClassName: nginx
     rules:
-      - host: emojivoto.picluster.ricsanfre.com
+      - host: emojivoto.picluster.watacoso.com
         http:
           paths:
             - path: /
@@ -558,7 +558,7 @@ Linkerd's testing application emojivoto can be used to test the tracing solution
                     number: 80
   ```
 
-- Step 4: Connect to emojivoto.picluster.ricsanfre.com and vote!!
+- Step 4: Connect to emojivoto.picluster.watacoso.com and vote!!
 
   ![emoji-vote](/assets/img/emojivoto.png)
 
@@ -567,7 +567,7 @@ Linkerd's testing application emojivoto can be used to test the tracing solution
   Filter logs usin LQL: 
   {% raw %}
   ```
-  {app="ingress-nginx", container="stream-accesslog"} | json | line_format "{{.message}}" | json | request_host="emojivoto.picluster.ricsanfre.com" | uri =~ "/api/vote.+"
+  {app="ingress-nginx", container="stream-accesslog"} | json | line_format "{{.message}}" | json | request_host="emojivoto.picluster.watacoso.com" | uri =~ "/api/vote.+"
   ```
   {% endraw %}
 

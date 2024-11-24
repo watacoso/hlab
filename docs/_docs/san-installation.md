@@ -39,7 +39,7 @@ Format of the iqn is the following: `iqn.yyyy-mm.reverse_domain_name:any`
 In my case I will use hostname to make iqn unique
 
 ```
-iqn.2021-07.com.ricsanfre.picluster:<hostname>
+iqn.2021-07.com.watacoso.picluster:<hostname>
 ```
 {{site.data.alerts.end}}
 
@@ -196,7 +196,7 @@ Follow these steps for preparing the storage device for hosting the LUNs: add ne
 
   ```shell
   cd iscsi/
-  create iqn.2021-07.com.ricsanfre.picluster:iscsi-server
+  create iqn.2021-07.com.watacoso.picluster:iscsi-server
   ```
 
     ```shell
@@ -207,8 +207,8 @@ Follow these steps for preparing the storage device for hosting the LUNs: add ne
     For help on commands, type 'help'.
 
     /> cd iscsi
-    /iscsi> create iqn.2021-07.com.ricsanfre.picluster:iscsi-server
-    Created target iqn.2021-07.com.ricsanfre.picluster:iscsi-server.
+    /iscsi> create iqn.2021-07.com.watacoso.picluster:iscsi-server
+    Created target iqn.2021-07.com.watacoso.picluster:iscsi-server.
     Created TPG 1.
     Global pref auto_add_default_portal=true
     Created default portal listening on all IPs (0.0.0.0), port 3260.
@@ -235,7 +235,7 @@ Follow these steps for preparing the storage device for hosting the LUNs: add ne
   ```
 
     ```shell
-    /> cd /iscsi/iqn.2021-07.com.ricsanfre.vbox:iscsi-server/tpg1/luns
+    /> cd /iscsi/iqn.2021-07.com.watacoso.vbox:iscsi-server/tpg1/luns
     /iscsi/iqn.20...ver/tpg1/luns> create /backstores/block/iscsi-client-vol1
     Created LUN 0.
 ```
@@ -267,22 +267,22 @@ Follow these steps for preparing the storage device for hosting the LUNs: add ne
     ```shell
     sudo targetcli
     /> cd iscsi
-    /iscsi> create iqn.2021-07.com.ricsanfre.vbox:iscsi-server
-    Created target iqn.2021-07.com.ricsanfre.vbox:iscsi-server.
+    /iscsi> create iqn.2021-07.com.watacoso.vbox:iscsi-server
+    Created target iqn.2021-07.com.watacoso.vbox:iscsi-server.
     Created TPG 1.
     Global pref auto_add_default_portal=true
     Created default portal listening on all IPs (0.0.0.0), port 3260.
     /iscsi> cd /backstores/block
     /backstores/block> create iscsi-client-vol1 /dev/vg_iscsi/lv_iscsi_1
     Created block storage object iscsi-client-vol1 using /dev/vg_iscsi/lv_iscsi_1.
-    /backstores/block> cd /iscsi/iqn.2021-07.com.ricsanfre.vbox:iscsi-server/tpg1/luns
+    /backstores/block> cd /iscsi/iqn.2021-07.com.watacoso.vbox:iscsi-server/tpg1/luns
     /iscsi/iqn.20...ver/tpg1/luns> create /backstores/block/iscsi-client-vol1
     Created LUN 0.
     /iscsi/iqn.20...ver/tpg1/luns> cd ../acls
-    /iscsi/iqn.20...ver/tpg1/acls> create iqn.2021-07.com.ricsanfre.vbox:iscsi-client
-    Created Node ACL for iqn.2021-07.com.ricsanfre.vbox:iscsi-client
+    /iscsi/iqn.20...ver/tpg1/acls> create iqn.2021-07.com.watacoso.vbox:iscsi-client
+    Created Node ACL for iqn.2021-07.com.watacoso.vbox:iscsi-client
     Created mapped LUN 0.
-    /iscsi/iqn.20...ver/tpg1/acls> cd iqn.2021-07.com.ricsanfre.vbox:iscsi-client/
+    /iscsi/iqn.20...ver/tpg1/acls> cd iqn.2021-07.com.watacoso.vbox:iscsi-client/
     /iscsi/iqn.20...:iscsi-client> set auth userid=user1
     Parameter userid is now 'user1'.
     /iscsi/iqn.20...:iscsi-client> set auth password=s1cret0
@@ -334,7 +334,7 @@ Follow these steps for preparing the storage device for hosting the LUNs: add ne
   Edit iqn assigned to the server in the file `/etc/iscsi/initiatorname.conf`.
 
   ```
-  InitiatorName=iqn.2021-07.com.ricsanfre.picluster:<host_name>
+  InitiatorName=iqn.2021-07.com.watacoso.picluster:<host_name>
   ```
 
 - Step 3. Configure iSCSI Authentication
@@ -369,7 +369,7 @@ This configuration assumes that all iSCSI targets to which the host is connectin
   ```
     ```
     sudo iscsiadm -m discovery -t sendtargets -p 192.168.56.100
-    192.168.56.100:3260,1 iqn.2021-07.com.ricsanfre.vbox:iscsi-server
+    192.168.56.100:3260,1 iqn.2021-07.com.watacoso.vbox:iscsi-server
     ```
 
   When targets are discovered node session configuration parameters are stored locally using the defaults values within the configuration file `iscsi.conf` are used (for example: authentication credentials )
@@ -391,11 +391,11 @@ This configuration assumes that all iSCSI targets to which the host is connectin
   For example authentication credentials can be specified per target:
 
     ```shell
-    sudo iscsiadm --mode node --targetname iqn.2021-07.com.ricsanfre.vbox:iscsi-server --op=update --name node.session.auth.authmethod --value CHAP
+    sudo iscsiadm --mode node --targetname iqn.2021-07.com.watacoso.vbox:iscsi-server --op=update --name node.session.auth.authmethod --value CHAP
 
-    sudo iscsiadm --mode node --targetname iqn.2021-07.com.ricsanfre.vbox:iscsi-server --op=update --name node.session.auth.username --value user1
+    sudo iscsiadm --mode node --targetname iqn.2021-07.com.watacoso.vbox:iscsi-server --op=update --name node.session.auth.username --value user1
 
-    sudo iscsiadm --mode node --targetname iqn.2021-07.com.ricsanfre.vbox:iscsi-server --op=update --name node.session.auth.pass --value s1cret0
+    sudo iscsiadm --mode node --targetname iqn.2021-07.com.watacoso.vbox:iscsi-server --op=update --name node.session.auth.pass --value s1cret0
     ```
 
 - Step 6. Connect to the iSCSI target.
@@ -407,9 +407,9 @@ This configuration assumes that all iSCSI targets to which the host is connectin
   ```
 
     ```shell
-    sudo iscsiadm --mode node --targetname iqn.2021-07.com.ricsanfre.vbox:iscsi-server --portal 192.168.56.100 --login
-    Logging in to [iface: default, target: iqn.2021-07.com.ricsanfre.vbox:iscsi-server, portal: 192.168.56.100,3260](multiple)
-    Login to [iface: default, target: iqn.2021-07.com.ricsanfre.vbox:iscsi-server, portal: 192.168.56.100,3260] successful.
+    sudo iscsiadm --mode node --targetname iqn.2021-07.com.watacoso.vbox:iscsi-server --portal 192.168.56.100 --login
+    Logging in to [iface: default, target: iqn.2021-07.com.watacoso.vbox:iscsi-server, portal: 192.168.56.100,3260](multiple)
+    Login to [iface: default, target: iqn.2021-07.com.watacoso.vbox:iscsi-server, portal: 192.168.56.100,3260] successful.
     ```
 
   Check the discovered iSCSI disks
@@ -422,7 +422,7 @@ This configuration assumes that all iSCSI targets to which the host is connectin
     sudo iscsiadm -m session -P 3
     iSCSI Transport Class version 2.0-870
     version 2.0-874
-    Target: iqn.2021-07.com.ricsanfre:iscsi-target (non-flash)
+    Target: iqn.2021-07.com.watacoso:iscsi-target (non-flash)
             Current Portal: 192.168.0.11:3260,1
             Persistent Portal: 192.168.0.11:3260,1
                     **********
@@ -430,7 +430,7 @@ This configuration assumes that all iSCSI targets to which the host is connectin
                     **********
                     Iface Name: default
                     Iface Transport: tcp
-                    Iface Initiatorname: iqn.2021-07.com.ricsanfre:iscsi-initiator
+                    Iface Initiatorname: iqn.2021-07.com.watacoso:iscsi-initiator
                     Iface IPaddress: 192.168.0.12
                     Iface HWaddress: <empty>
                     Iface Netdev: <empty>
@@ -448,9 +448,9 @@ This configuration assumes that all iSCSI targets to which the host is connectin
                     *****
                     CHAP:
                     *****
-                    username: iqn.2021-07.com.ricsanfre:iscsi-initiator
+                    username: iqn.2021-07.com.watacoso:iscsi-initiator
                     password: ********
-                    username_in: iqn.2021-07.com.ricsanfre:iscsi-target
+                    username_in: iqn.2021-07.com.watacoso:iscsi-target
                     password_in: ********
                     ************************
                     Negotiated iSCSI params:

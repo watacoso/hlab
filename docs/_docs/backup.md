@@ -84,7 +84,7 @@ Minio S3 server installed as stand-alone service and configured as described in 
 
 OS filesystems from different nodes will be backed up using `restic`. As backend S3 Minio server will be used.
 
-Restic installation and backup scheduling tasks have been automated with Ansible developing a role: **ricsanfre.backup**. This role installs restic and configure a systemd service and timer to schedule the backup execution.
+Restic installation and backup scheduling tasks have been automated with Ansible developing a role: **watacoso.backup**. This role installs restic and configure a systemd service and timer to schedule the backup execution.
 
 ### Restic installation and backup scheduling configuration
 
@@ -188,7 +188,7 @@ restic prune
 
   A systemd service and timer or cron can be used to execute and schedule the backups.
 
-  **ricsanfre.backup** ansible role uses a systemd service and timer to automatically execute the backups. List of directories to be backed up, the scheduling of the backup and the retention policy are passed as role parameters.
+  **watacoso.backup** ansible role uses a systemd service and timer to automatically execute the backups. List of directories to be backed up, the scheduling of the backup and the retention policy are passed as role parameters.
 
 - Allowing concurrent backup processes
 

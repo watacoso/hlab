@@ -298,14 +298,14 @@ A Kuberentes Service must be created for enabling the access to UI Dashboard
       traefik.ingress.kubernetes.io/router.middlewares: traefik-basic-auth@kubernetescrd
       # Enable cert-manager to create automatically the SSL certificate and store in Secret
       cert-manager.io/cluster-issuer: ca-issuer
-      cert-manager.io/common-name: traefik.picluster.ricsanfre.com
+      cert-manager.io/common-name: traefik.picluster.watacoso.com
   spec:
     tls:
       - hosts:
-          - traefik.picluster.ricsanfre.com
+          - traefik.picluster.watacoso.com
         secretName: traefik-tls
     rules:
-      - host: traefik.picluster.ricsanfre.com
+      - host: traefik.picluster.watacoso.com
         http:
           paths:
             - path: /
@@ -329,7 +329,7 @@ A Kuberentes Service must be created for enabling the access to UI Dashboard
       traefik.ingress.kubernetes.io/router.entrypoints: web
   spec:
     rules:
-      - host: traefik.picluster.ricsanfre.com
+      - host: traefik.picluster.watacoso.com
         http:
           paths:
             - path: /
@@ -345,7 +345,7 @@ A Kuberentes Service must be created for enabling the access to UI Dashboard
 
 - Apply manifests files
 
-- Acces UI through configured dns: `https://traefik.picluster.ricsanfre.com/dashboard/`
+- Acces UI through configured dns: `https://traefik.picluster.watacoso.com/dashboard/`
 
 {{site.data.alerts.note}}
 
@@ -363,7 +363,7 @@ spec:
     - websecure
   routes:
   - kind: Rule
-    match: Host(`{{ traefik.picluster.ricsanfre.com }}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+    match: Host(`{{ traefik.picluster.watacoso.com }}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
     services:
     - kind: TraefikService
       name: api@internal
@@ -385,9 +385,9 @@ spec:
   issuerRef:
     name: ca-issuer
     kind: ClusterIssuer
-  commonName: traefik.picluster.ricsanfre.com
+  commonName: traefik.picluster.watacoso.com
   dnsNames:
-  - traefik.picluster.ricsanfre.com
+  - traefik.picluster.watacoso.com
   privateKey:
     algorithm: ECDSA
 ```
@@ -620,7 +620,7 @@ spec:
 
 `removeHeader` option to true removes the authorization header before forwarding the request to backend service.
 
-In some cases, like linkerd-viz, where basic auth midleware is used. Integration with Grafana fails if this option is not set to true. Grafana does not try to authenticate the user by other means if basic auth headers are present and returns a 401 unauthorized error. See [issue #122](https://github.com/ricsanfre/pi-cluster/issues/122)
+In some cases, like linkerd-viz, where basic auth midleware is used. Integration with Grafana fails if this option is not set to true. Grafana does not try to authenticate the user by other means if basic auth headers are present and returns a 401 unauthorized error. See [issue #122](https://github.com/watacoso/pi-cluster/issues/122)
 
 {{site.data.alerts.end}}
 

@@ -62,7 +62,7 @@ spec:
     branch: master
   secretRef:
     name: mySecret
-  url: https://github.com/ricsanfre/flux-cd.git
+  url: https://github.com/watacoso/flux-cd.git
 ```
 
 Where:
@@ -97,7 +97,7 @@ Secret can also be generated automatically using `flux` cli command.
 
 ```shell
 flux create secret git flux-system \
-    --url=https://github.com/ricsanfre/flux-cd.git \
+    --url=https://github.com/watacoso/flux-cd.git \
     --username=git \
     --password=password
 ```
@@ -311,7 +311,7 @@ https://fluxcd.io/flux/installation/bootstrap/github/
 ```shell
 flux bootstrap github \
 		--token-auth \
-		--owner=ricsanfre \
+		--owner=watacoso \
 		--repository=fluxcd-test \
 		--branch=master \
 		--path=kubernetes/clusters/dev \
@@ -346,7 +346,7 @@ If the flux bootstrap command executed is:
 ```shell
 flux bootstrap github \
 		--token-auth \
-		--owner=ricsanfre \
+		--owner=watacoso \
 		--repository=fluxcd-test \
 		--branch=master \
 		--path=kubernetes/clusters/dev \
@@ -373,7 +373,7 @@ the following actions are taken:
 		    branch: master
 		  secretRef:
 		    name: flux-system
-		  url: https://github.com/ricsanfre/fluxcd-test.git
+		  url: https://github.com/watacoso/fluxcd-test.git
 		---
 		apiVersion: kustomize.toolkit.fluxcd.io/v1
 		kind: Kustomization
@@ -451,7 +451,7 @@ To avoid automatic commits to GitHub repo, the following manual installation and
 
    ```shell
     flux create secret git fluxcd \
-        --url=https://github.com/ricsanfre/fluxcd-test \
+        --url=https://github.com/watacoso/fluxcd-test \
         --username=username \
         --password=password \
         --export fluxcd-auth.yaml
@@ -493,7 +493,7 @@ To avoid automatic commits to GitHub repo, the following manual installation and
           branch: master
         secretRef:
           name: fluxcd-test
-        url: https://github.com/ricsanfre/fluxcd-test.git
+        url: https://github.com/watacoso/fluxcd-test.git
       ---
       apiVersion: kustomize.toolkit.fluxcd.io/v1
       kind: Kustomization
@@ -538,7 +538,7 @@ Bootstrap cluster using manual process instead using  `flux bootstrap` command. 
       interval: 1m0s
       ref:
         branch: master
-        url: https://github.com/ricsanfre/fluxcd-test.git
+        url: https://github.com/watacoso/fluxcd-test.git
     ```
 
 
@@ -608,8 +608,8 @@ Cluster specific configuration in `kubernetes/clusters/<environment>`
     name: cluster-settings
     namespace: flux-system
   data:
-    CLUSTER_DOMAIN: picluster.ricsanfre.com
-    S3_BACKUP_SERVER: s3.ricsanfre.com
+    CLUSTER_DOMAIN: picluster.watacoso.com
+    S3_BACKUP_SERVER: s3.watacoso.com
   ```
 
 - Cluster repositories (helm, OCI, etc.): `kubernetes/clusters/<environment>/repositories

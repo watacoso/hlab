@@ -16,7 +16,7 @@
 This is an educational project to build a hybrid x86/ARM Kubernetes cluster at home, using Raspberry Pi and refurbished x86 mini PCs, learn to deploy basic kubernetes services and automate its deployment and configuration applying IaC (infrastructure as a code) and GitOps methodologies.
 
 
-The entire process for creating this cluster at home, from cluster design and architecture to step-by-step manual configuration guides, has been documented and it is published in the project website: https://picluster.ricsanfre.com.
+The entire process for creating this cluster at home, from cluster design and architecture to step-by-step manual configuration guides, has been documented and it is published in the project website: https://picluster.watacoso.com.
 
 This repository contains all source code used to automate all manual tasks described in the documentation: Cloud-init's configuration files, Ansible's source code (playbooks/roles), and packaged Kubernetes applications (helm and kustomize) to be deployed using FluxCD. 
 
@@ -226,7 +226,7 @@ Even whe the premise is to deploy all services in the kubernetes cluster, there 
 
 1. Use a private PKI (custom CA to sign certificates).
 
-   Currently supported. Only minor changes are required. See details in [Doc: Quick Start instructions](https://picluster.ricsanfre.com/docs/ansible).
+   Currently supported. Only minor changes are required. See details in [Doc: Quick Start instructions](https://picluster.watacoso.com/docs/ansible).
 
 2. Use other DNS provider.
 
@@ -257,17 +257,17 @@ Home lab architecture, showed in the picture below, consist of a Kubernetes clus
 </p>
 
 
-See further details about the architecture and hardware in the [documentation](https://picluster.ricsanfre.com/docs/home/)
+See further details about the architecture and hardware in the [documentation](https://picluster.watacoso.com/docs/home/)
 
 ## Official Site
 
-You can browse more information about Pi Cluster Project on https://picluster.ricsanfre.com/. 
+You can browse more information about Pi Cluster Project on https://picluster.watacoso.com/. 
 
 The content of this website and the source code to build it (Jekyll static based website) are also stored in this repo: `/docs` folder.
 
 ## Usage 
 
-Check out the documentation [Quick Start guide](http://picluster.ricsanfre.com/docs/ansible/) to know how to use and tweak cloud-init files (`/cloud-init` folder), Ansible playbooks (`/ansible` folder) and packaged Kubernetes applications ( `/kubernetes` folder) contained in this repository, so you can use in for your own homelab.
+Check out the documentation [Quick Start guide](http://picluster.watacoso.com/docs/ansible/) to know how to use and tweak cloud-init files (`/cloud-init` folder), Ansible playbooks (`/ansible` folder) and packaged Kubernetes applications ( `/kubernetes` folder) contained in this repository, so you can use in for your own homelab.
 
 ## About the Project
 

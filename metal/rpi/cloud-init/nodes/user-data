@@ -2,7 +2,7 @@
 
 # Set TimeZone and Locale
 timezone: UTC
-locale: es_ES.UTF-8
+locale: it_IT.UTF-8
 
 # Hostname
 hostname: nodeX
@@ -12,7 +12,7 @@ manage_etc_hosts: localhost
 
 users:
   # not using default ubuntu user
-  - name: ricsanfre
+  - name: watacoso
     primary_group: users
     groups: [adm, admin]
     shell: /bin/bash

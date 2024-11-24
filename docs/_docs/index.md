@@ -289,25 +289,25 @@ From software perspective, I have developed the following:
 
    | Ansible role | Description | Github |
    | ---| --- | --- | 
-   |  [ricsanfre.security](https://galaxy.ansible.com/ricsanfre/security) | Automate SSH hardening configuration tasks  | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-security)|
-   | [ricsanfre.ntp](https://galaxy.ansible.com/ricsanfre/ntp)  | Chrony NTP service configuration | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-ntp) |
-   | [ricsanfre.firewall](https://galaxy.ansible.com/ricsanfre/firewall) | NFtables firewall configuration | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-firewall) |
-   | [ricsanfre.dnsmasq](https://galaxy.ansible.com/ricsanfre/dnsmasq) | Dnsmasq configuration | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-dnsmasq) |
-   | [ricsanfre.storage](https://galaxy.ansible.com/ricsanfre/storage)| Configure LVM | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-storage) |
-   | [ricsanfre.iscsi_target](https://galaxy.ansible.com/ricsanfre/iscsi_target)| Configure iSCSI Target| [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-iscsi_target) |
-   | [ricsanfre.iscsi_initiator](https://galaxy.ansible.com/ricsanfre/iscsi_initiator)| Configure iSCSI Initiator | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-iscsi_initiator) |
-   | [ricsanfre.k8s_cli](https://galaxy.ansible.com/ricsanfre/k8s_cli)| Install kubectl and Helm utilities | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-k8s_cli) |
-   | [ricsanfre.fluentbit](https://galaxy.ansible.com/ricsanfre/fluentbit)| Configure fluentbit | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-fluentbit) |
-   | [ricsanfre.minio](https://galaxy.ansible.com/ricsanfre/minio)| Configure Minio S3 server | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-minio) |
-   | [ricsanfre.backup](https://galaxy.ansible.com/ricsanfre/backup)| Configure Restic | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-backup) |
-   | [ricsanfre.vault](https://galaxy.ansible.com/ricsanfre/vault)| Configure Hashicorp Vault | [{{site.data.icons.github}}](https://github.com/ricsanfre/ansible-role-vault) |
+   |  [watacoso.security](https://galaxy.ansible.com/watacoso/security) | Automate SSH hardening configuration tasks  | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-security)|
+   | [watacoso.ntp](https://galaxy.ansible.com/watacoso/ntp)  | Chrony NTP service configuration | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-ntp) |
+   | [watacoso.firewall](https://galaxy.ansible.com/watacoso/firewall) | NFtables firewall configuration | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-firewall) |
+   | [watacoso.dnsmasq](https://galaxy.ansible.com/watacoso/dnsmasq) | Dnsmasq configuration | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-dnsmasq) |
+   | [watacoso.storage](https://galaxy.ansible.com/watacoso/storage)| Configure LVM | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-storage) |
+   | [watacoso.iscsi_target](https://galaxy.ansible.com/watacoso/iscsi_target)| Configure iSCSI Target| [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-iscsi_target) |
+   | [watacoso.iscsi_initiator](https://galaxy.ansible.com/watacoso/iscsi_initiator)| Configure iSCSI Initiator | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-iscsi_initiator) |
+   | [watacoso.k8s_cli](https://galaxy.ansible.com/watacoso/k8s_cli)| Install kubectl and Helm utilities | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-k8s_cli) |
+   | [watacoso.fluentbit](https://galaxy.ansible.com/watacoso/fluentbit)| Configure fluentbit | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-fluentbit) |
+   | [watacoso.minio](https://galaxy.ansible.com/watacoso/minio)| Configure Minio S3 server | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-minio) |
+   | [watacoso.backup](https://galaxy.ansible.com/watacoso/backup)| Configure Restic | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-backup) |
+   | [watacoso.vault](https://galaxy.ansible.com/watacoso/vault)| Configure Hashicorp Vault | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-vault) |
    {: .table .table-white .border-dark } 
 
 3. **Packaged Kuberentes applications** (Helm, Kustomize, manifest files) to be deployed using FluxCD
 
    Source code can be found in Pi Cluster Git repository under [`/kubernetes`]({{site.git_address}}/tree/master/kubernetes) directory.
 
-4. This **documentation website** [picluster.ricsanfre.com](/), hosted in Github pages.
+4. This **documentation website** [picluster.watacoso.com](/), hosted in Github pages.
 
    Static website generated with [Jekyll](https://jekyllrb.com/).
 
@@ -339,7 +339,7 @@ The software used and the latest version tested of each component
 | Logging | Elastic Search | 8.13.0 | Deployed with ECK Operator |
 | Logging | Kibana | 8.13.0 | Deployed with ECK Operator |
 | Logging | Fluentbit | 3.0.7 | Helm chart version: 0.46.11 |
-| Logging | Fluentd | 1.15.3 | Helm chart version: 0.5.2 [Custom docker image](https://github.com/ricsanfre/fluentd-aggregator) from official v1.17.1|
+| Logging | Fluentd | 1.15.3 | Helm chart version: 0.5.2 [Custom docker image](https://github.com/watacoso/fluentd-aggregator) from official v1.17.1|
 | Logging | Loki | 3.1.0 | Helm chart grafana/loki version: 6.7.1  |
 | Monitoring | Kube Prometheus Stack | v0.75.0 | Helm chart version: 61.2.0 |
 | Monitoring | Prometheus Operator | v0.75.0 | Installed by Kube Prometheus Stack. Helm chart version: 61.2.0  |

@@ -95,13 +95,13 @@ Ubuntu live ISO need to be served by the HTTP server
 - Step 1. Download Ubuntu 22.04 server live ISO
 
   ```shell
-  wget http://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/jammy-live-server-amd64.iso
+  wget http://cdimage.ubuntu.com/ubuntu-server/daily-live/current/plucky-live-server-amd64.iso
   ```
 
 - Step 2. Copy to images directory
 
   ```shell
-  cp jammy-live-server-amd64.iso /var/www/html/images/.
+  cp plucky-live-server-amd64.iso /var/www/html/images/.
   ```
 
 #### Serving cloud-init files via HTTP
@@ -127,7 +127,7 @@ auto-install cloud-init files are served by HTTP server
   #cloud-config
   autoinstall:
     identity:
-      hostname: jammy-minimal
+      hostname: plucky-minimal
       password: $6$gnqbMUzHhQzpDEw.$.cCNVVDsDfj5Feebh.5O4VbOmib7tyjmeI2ZsFP7VK2kWwgJFbfjvXo3chpeAqCgXWVIW9oNQ/Ag85PR0IsKD/
       username: ubuntu
     version: 1
@@ -203,13 +203,13 @@ See [Gateway DHCP/DNS Configuration](/docs/gateway/#dhcpdns-configuration)
 - Step 1. Download Ubuntu 22.04 server live ISO
 
   ```shell
-  wget http://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/jammy-live-server-amd64.iso
+  wget http://cdimage.ubuntu.com/ubuntu-server/daily-live/current/plucky-live-server-amd64.iso
   ```
   
 - Step 2. Mount the ISO file
 
   ```shell
-  mount jammy-live-server-amd64.iso /mnt
+  mount plucky-live-server-amd64.iso /mnt
   ```
 
 - Step 3. Copy linux kernel and initrd files to TFTP server root
@@ -274,7 +274,7 @@ See [Gateway DHCP/DNS Configuration](/docs/gateway/#dhcpdns-configuration)
 
   menuentry 'Install Ubuntu 22.04' {
           gfxmode $linux_gfx_mode
-          linux vmlinuz ip=dhcp url=http://10.0.0.1/images/jammy-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.0.0.1/ks/${net_default_mac}/ cloud-config-url=/dev/null
+          linux vmlinuz ip=dhcp url=http://10.0.0.1/images/plucky-live-server-amd64.iso autoinstall ds=nocloud-net\;s=http://10.0.0.1/ks/${net_default_mac}/ cloud-config-url=/dev/null
           initrd initrd
   }
   ```
@@ -312,12 +312,12 @@ See [Gateway DHCP/DNS Configuration](/docs/gateway/#dhcpdns-configuration)
   default menu.c32
   menu title Ubuntu installer
 
-  label jammy
+  label plucky
           menu label Install Ubuntu J^ammy (22.04)
           menu default
           kernel vmlinuz
           initrd initrd
-          append ip=dhcp url=http://10.0.0.1/images/jammy-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://10.0.0.1/ks/10:e7:c6:16:54:10/ cloud-config-url=/dev/null
+          append ip=dhcp url=http://10.0.0.1/images/plucky-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://10.0.0.1/ks/10:e7:c6:16:54:10/ cloud-config-url=/dev/null
   prompt 0
   timeout 300
   ```
@@ -345,19 +345,19 @@ Testing with servers with less than 5 GB of memory, for example for testing PXE 
 - Step 2: Make shared NFS directory
 
   ```shell
-  sudo mkdir -p /mnt/jammy-live-server-amd64-iso-nfs/
+  sudo mkdir -p /mnt/plucky-live-server-amd64-iso-nfs/
   ```
 - Step 3: Mount ubuntu ISO file
 
   ```shell
-  sudo mount /var/www/html/images/jammy-live-server-amd64.iso /mnt/jammy-live-server-amd64-iso-nfs/ 
+  sudo mount /var/www/html/images/plucky-live-server-amd64.iso /mnt/plucky-live-server-amd64-iso-nfs/ 
   ```
 
   Configure mount on start
 
   Add to /etc/fstab file the following line
   ```
-  /var/www/html/images/jammy-live-server-amd64.iso /mnt/jammy-live-server-amd64-iso-nfs iso9660 loop 0 0
+  /var/www/html/images/plucky-live-server-amd64.iso /mnt/plucky-live-server-amd64-iso-nfs iso9660 loop 0 0
   ```
 
 - Step 4: Configure NFS
@@ -365,7 +365,7 @@ Testing with servers with less than 5 GB of memory, for example for testing PXE 
   Edit /etc/exports file adding the following line:
 
   ```
-  /mnt/jammy-live-server-amd64-iso-nfs 10.0.0.0/24(ro,sync,no_subtree_check)
+  /mnt/plucky-live-server-amd64-iso-nfs 10.0.0.0/24(ro,sync,no_subtree_check)
   ```
 
 - Step 5: export NFS directory
@@ -420,7 +420,7 @@ Testing with servers with less than 5 GB of memory, for example for testing PXE 
 
   menuentry 'Install Ubuntu 22.04' {
           gfxmode $linux_gfx_mode
-          linux vmlinuz netboot=nfs nfsroot=10.0.0.10:/mnt/jammy-live-server-amd64-iso-nfs ip=dhcp  autoinstall ds=nocloud-net\;s=http://10.0.0.10/ks/ cloud-config-url=/dev/null
+          linux vmlinuz netboot=nfs nfsroot=10.0.0.10:/mnt/plucky-live-server-amd64-iso-nfs ip=dhcp  autoinstall ds=nocloud-net\;s=http://10.0.0.10/ks/ cloud-config-url=/dev/null
           initrd initrd
   }
   ```
@@ -432,7 +432,7 @@ Testing with servers with less than 5 GB of memory, for example for testing PXE 
 - [Setup IPv4 UEFI PXE Boot Server Ubuntu 20.04 [cloud-init]](https://www.golinuxcloud.com/uefi-pxe-boot-server-ubuntu-20-04-cloud-init/)
 - [Ubuntu Automated Server Installation](https://ubuntu.com/server/docs/install/autoinstall)
 - [Netbooting the server installer on amd64](https://ubuntu.com/server/docs/install/netboot-amd64)
-- [Ubuntu 22.04 (Jammy) autoinstall over PXE](https://www.molnar-peter.hu/en/ubuntu-jammy-netinstall-pxe.html)
+- [Ubuntu 22.04 (Plucky) autoinstall over PXE](https://www.molnar-peter.hu/en/ubuntu-plucky-netinstall-pxe.html)
 - [Using Ubuntu Live-Server to automate Desktop installation](https://github.com/canonical/autoinstall-desktop)
 - [Configuring PXE Network Boot Server on Ubuntu 22.04 LTS](https://linuxhint.com/pxe_boot_ubuntu_server/)
 - [How to manage multiple Ubuntu servers with UEFI PXE boot](https://askubuntu.com/questions/1377514/how-to-manage-multiple-ubuntu-servers-with-uefi-pxe-boot)

@@ -321,7 +321,7 @@ Finally, when installing kube-prometheus-stack helm chart, installation of the C
         enabled: true
         annotations:
           # Enable external authentication using Oauth2-proxy
-          nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.picluster.ricsanfre.com/oauth2/start?rd=https://$host$request_uri
+          nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.picluster.watacoso.com/oauth2/start?rd=https://$host$request_uri
           nginx.ingress.kubernetes.io/auth-url: http://oauth2-proxy.oauth2-proxy.svc.cluster.local/oauth2/auth
           nginx.ingress.kubernetes.io/proxy-buffer-size: "16k"
           nginx.ingress.kubernetes.io/auth-response-headers: Authorization
@@ -331,12 +331,12 @@ Finally, when installing kube-prometheus-stack helm chart, installation of the C
           #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API)
           #   * 'ca-issuer' (CA-signed certificate, not valid)
           cert-manager.io/cluster-issuer: letsencrypt-issuer
-          cert-manager.io/common-name: hubble.picluster.ricsanfre.com
+          cert-manager.io/common-name: hubble.picluster.watacoso.com
         className: nginx
-        hosts: ["hubble.picluster.ricsanfre.com"]
+        hosts: ["hubble.picluster.watacoso.com"]
         tls:
           - hosts:
-            - hubble.picluster.ricsanfre.com
+            - hubble.picluster.watacoso.com
             secretName: hubble-tls
   ```
 

@@ -131,7 +131,7 @@
             minio_cert: "{{ lookup('file', cert_path[0] ) }}"
       when: enable_letsencrypt
   roles:
-    - role: ricsanfre.minio
+    - role: watacoso.minio
 
 ## Install Hashicorp Vault Server
 
@@ -187,7 +187,7 @@
             vault_cert: "{{ lookup('file', cert_path[0] ) }}"
       when: enable_letsencrypt
   roles:
-    - role: ricsanfre.vault
+    - role: watacoso.vault
 
   tasks:
     # Configure ansible user profile with VAULT environement variables

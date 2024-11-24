@@ -10,4 +10,4 @@
       tags: ["always"]
   roles:
     # DNS configuration
-    - role: ricsanfre.bind9
+    - role: watacoso.bind9

@@ -13,7 +13,7 @@ For a more secured and multi-user Minio installation the instructions of this [p
 
 For installing Minio S3 storage server, a VM (Ubuntu OS) hosted in Public Cloud or any linux server/VM that is not not part of the cluster can be used.
 
-Minio installation and configuration tasks have been automated with Ansible developing a role: **ricsanfre.minio**. This role, installs Minio Server and Minio Client and automatically create S3 buckets, and configure users and ACLs for securing the access.
+Minio installation and configuration tasks have been automated with Ansible developing a role: **watacoso.minio**. This role, installs Minio Server and Minio Client and automatically create S3 buckets, and configure users and ACLs for securing the access.
 
 ## Minio installation (baremetal server)
 
@@ -70,7 +70,7 @@ Minio installation and configuration tasks have been automated with Ansible deve
   # Minio server region
   MINIO_SITE_REGION="eu-west-1"
   # Minio server URL
-  MINIO_SERVER_URL="https://s3.picluster.ricsanfre.com:9091"
+  MINIO_SERVER_URL="https://s3.picluster.watacoso.com:9091"
   ```
 
   Minio is configured with the following parameters:
@@ -144,7 +144,7 @@ Minio installation and configuration tasks have been automated with Ansible deve
 
   {{site.data.alerts.important}}
 
-  `restic` backup to a S3 Object Storage backend using self-signed certificates does not work (See issue [#26](https://github.com/ricsanfre/pi-cluster/issues/26)). However, it works if SSL certificates are signed using a custom CA.
+  `restic` backup to a S3 Object Storage backend using self-signed certificates does not work (See issue [#26](https://github.com/watacoso/pi-cluster/issues/26)). However, it works if SSL certificates are signed using a custom CA.
 
   {{site.data.alerts.end}}
 
@@ -157,7 +157,7 @@ Minio installation and configuration tasks have been automated with Ansible deve
             -sha256 \
             -nodes \
             -newkey rsa:4096 \
-            -subj "/CN=Ricsanfre CA" \
+            -subj "/CN=Watacoso CA" \
             -keyout rootCA.key -out rootCA.crt
      ```
   2. Create a SSL certificate for Minio server signed using the custom CA
@@ -167,10 +167,10 @@ Minio installation and configuration tasks have been automated with Ansible deve
                  -keyout minio.key \
                  -out minio.csr \
                  -batch \
-                 -subj "/C=ES/ST=Madrid/L=Madrid/O=Ricsanfre CA/OU=picluster/CN=s3.picluster.ricsanfre.com"
+                 -subj "/C=ES/ST=Madrid/L=Madrid/O=Watacoso CA/OU=picluster/CN=s3.picluster.watacoso.com"
 
       openssl x509 -req -days 365000 -set_serial 01 \
-            -extfile <(printf "subjectAltName=DNS:s3.picluster.ricsanfre.com") \
+            -extfile <(printf "subjectAltName=DNS:s3.picluster.watacoso.com") \
             -in minio.csr \
             -out minio.crt \
             -CA rootCA.crt \
@@ -200,13 +200,13 @@ Minio installation and configuration tasks have been automated with Ansible deve
 
   {{site.data.alerts.note}}
 
-  Certificate must be created for the DNS name associated to MINIO S3 service, i.e `s3.picluster.ricsanfre.com`.
+  Certificate must be created for the DNS name associated to MINIO S3 service, i.e `s3.picluster.watacoso.com`.
 
   `MINIO_SERVER_URL` environment variable need to be configured, to avoid issues with TLS certificates without IP Subject Alternative Names.
 
   {{site.data.alerts.end}}
 
-  To connect to Minio console use the URL https://s3.picluster.ricsanfre.com:9091
+  To connect to Minio console use the URL https://s3.picluster.watacoso.com:9091
 
 - Step 9. Configure minio client: `mc`
 

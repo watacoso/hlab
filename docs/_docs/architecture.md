@@ -172,7 +172,7 @@ Sequential and random I/O tests have been executed with the different storage co
 
 For the testing a tweaked version of the script provided by James A. Chambers (https://jamesachambers.com/) has been used
 
-Tests execution has been automated with Ansible. See `pi-storage-benchmark` [repository](https://github.com/ricsanfre/pi-storage-benchmark) for the details of the testing procedure and the results.
+Tests execution has been automated with Ansible. See `pi-storage-benchmark` [repository](https://github.com/watacoso/pi-storage-benchmark) for the details of the testing procedure and the results.
 
 ##### Sequential I/O performance
 

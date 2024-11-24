@@ -2,8 +2,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: ricsanfre
+  name: watacoso
   namespace: flux-system
 spec:
-  url: https://ricsanfre.github.io/helm-charts
+  url: https://watacoso.github.io/helm-charts
   interval: 1h

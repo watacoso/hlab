@@ -417,7 +417,7 @@ Installation using `Helm` (Release 3):
             # Grafana service name is "grafana" and is in the "monitoring" namespace.
             in_cluster_url: 'http://grafana.monitoring.svc.cluster.local/grafana/'
             # Public facing URL of Grafana
-            url: 'https://monitoring.picluster.ricsanfre.com/grafana/'
+            url: 'https://monitoring.picluster.watacoso.com/grafana/'
             auth:
               # Use same OAuth2.0 token used for accesing Kiali
               type: bearer
@@ -447,10 +447,10 @@ Installation using `Helm` (Release 3):
                   #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API)
                   #   * 'ca-issuer' (CA-signed certificate, not valid)
                   cert-manager.io/cluster-issuer: letsencrypt-issuer
-                  cert-manager.io/common-name: kiali.picluster.ricsanfre.com
+                  cert-manager.io/common-name: kiali.picluster.watacoso.com
               spec:
                 rules:
-                - host: kiali.picluster.ricsanfre.com
+                - host: kiali.picluster.watacoso.com
                   http:
                     paths:
                     - backend:
@@ -462,7 +462,7 @@ Installation using `Helm` (Release 3):
                       pathType: Prefix
                 tls:
                 - hosts:
-                  - kiali.picluster.ricsanfre.com
+                  - kiali.picluster.watacoso.com
                   secretName: kiali-tls
   ```
 
@@ -520,8 +520,8 @@ See further details in [Kiali OpenID Connect Strategy](https://kiali.io/docs/con
   ![kiali-keycloak-3](/assets/img/kiali-keycloak-3.png)
 
   - Provide the following 'Logging settings'
-    - Valid redirect URIs: https://kiali.picluster.ricsanfre.com/kiali/*
-    - Root URL: https://kiali.picluster.ricsanfre.com/kiali/
+    - Valid redirect URIs: https://kiali.picluster.watacoso.com/kiali/*
+    - Root URL: https://kiali.picluster.watacoso.com/kiali/
   - Save the configuration.
 
 - Step 2: Locate kiali client credentials
@@ -550,7 +550,7 @@ See further details in [Kiali OpenID Connect Strategy](https://kiali.io/docs/con
         openid:
           client_id: "kiali"
           disable_rbac: true
-          issuer_uri: "https://sso.picluster.ricsanfre.com/realms/picluster"
+          issuer_uri: "https://sso.picluster.watacoso.com/realms/picluster"
   ```
 
 ## Testing Istio installation

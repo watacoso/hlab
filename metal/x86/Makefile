@@ -1,5 +1,5 @@
-IMG=jammy-live-server-amd64.iso
-URL_IMG=http://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/${IMG}
+IMG=plucky-live-server-amd64.iso
+URL_IMG=http://cdimage.ubuntu.com/ubuntu-server/daily-live/current/${IMG}
 ISO_MOUNT=/tmp/iso-disk
 OUT_BOOT_FILES=pxe-files/boot/
 

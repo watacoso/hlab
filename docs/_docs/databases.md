@@ -292,7 +292,7 @@ S3, storage server, like Minio need to be configured.
           compression: bzip2
           maxParallel: 8
         destinationPath: s3://cloudnative-pg/backup
-        endpointURL: https://s3.ricsanfre.com:9091
+        endpointURL: https://s3.watacoso.com:9091
         s3Credentials:
           accessKeyId:
             name: cnpg-minio-secret

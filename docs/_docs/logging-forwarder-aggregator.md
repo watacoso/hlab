@@ -39,10 +39,10 @@ Since in the future I might configure the aggregator to dispath logs to another 
 
 [fluentd-kubernetes-daemonset images](https://github.com/fluent/fluentd-kubernetes-daemonset) should work for deploying fluentd as Deployment. For outputing to the ES you just need to select the adequate [fluentd-kubernetes-daemonset image tag](https://hub.docker.com/r/fluent/fluentd-kubernetes-daemonset/tags).
 
-As alternative, you can create your own customized docker image or use mine. You can find it in [ricsanfre/fluentd-aggregator github repository](https://github.com/ricsanfre/fluentd-aggregator).
+As alternative, you can create your own customized docker image or use mine. You can find it in [watacoso/fluentd-aggregator github repository](https://github.com/watacoso/fluentd-aggregator).
 The multi-architecture (amd64/arm64) image is available in docker hub:
 
-- `ricsanfre/fluentd-aggregator:v1.17.1-debian-1.0`
+- `watacoso/fluentd-aggregator:v1.17.1-debian-1.0`
 
 {{site.data.alerts.end}}
 
@@ -174,7 +174,7 @@ The above Kubernetes resources, except TLS certificate and shared secret, are cr
     secretName: fluentd-tls
     duration: 2160h # 90d
     renewBefore: 360h # 15d
-    commonName: fluentd.picluster.ricsanfre.com
+    commonName: fluentd.picluster.watacoso.com
     isCA: false
     privateKey:
       algorithm: ECDSA
@@ -183,7 +183,7 @@ The above Kubernetes resources, except TLS certificate and shared secret, are cr
       - server auth
       - client auth
     dnsNames:
-      - fluentd.picluster.ricsanfre.com
+      - fluentd.picluster.watacoso.com
     isCA: false
     # ClusterIssuer: ca-issuer.
     issuerRef:
@@ -303,7 +303,7 @@ The above Kubernetes resources, except TLS certificate and shared secret, are cr
 
   # Fluentd image
   image:
-    repository: "ricsanfre/fluentd-aggregator"
+    repository: "watacoso/fluentd-aggregator"
     pullPolicy: "IfNotPresent"
     tag: "v1.17.1-debian-1.0"
 
@@ -653,7 +653,7 @@ The above Kubernetes resources, except TLS certificate and shared secret, are cr
     type: LoadBalancer
     loadBalancerIP: 10.0.0.101
   ```
-  Fluentd forward service will be available in port 24224 and IP 10.0.0.101 (IP belonging to MetalLB addresses pool). This IP address should be mapped to a DNS record, `fluentd.picluster.ricsanfre.com`, in `gateway` dnsmasq configuration.
+  Fluentd forward service will be available in port 24224 and IP 10.0.0.101 (IP belonging to MetalLB addresses pool). This IP address should be mapped to a DNS record, `fluentd.picluster.watacoso.com`, in `gateway` dnsmasq configuration.
 
 - Step 8: Check fluentd status
   ```shell
@@ -669,7 +669,7 @@ The Helm chart deploy fluentd as a Deployment, passing environment values to the
 ```yml
 # Fluentd image
 image:
-  repository: "ricsanfre/fluentd-aggregator"
+  repository: "watacoso/fluentd-aggregator"
   pullPolicy: "IfNotPresent"
   tag: "v1.17.1-debian-1.0"
 
@@ -702,7 +702,7 @@ securityContext:
    runAsUser: 1000
 ```
 
-Fluentd is deployed as Deployment (`kind: "Deployment"`) with 1 replica (`replicaCount: 1`, using custom fluentd image (`image.repository: "ricsanfre/fluentd-aggregator` and `image.tag`).
+Fluentd is deployed as Deployment (`kind: "Deployment"`) with 1 replica (`replicaCount: 1`, using custom fluentd image (`image.repository: "watacoso/fluentd-aggregator` and `image.tag`).
 
 Service account (`serviceAccount.create: false`) and corresponding RoleBinding (`rbac.create: false`) are not created since fluentd aggregator does not need to access to Kubernetes API.
 
@@ -1151,7 +1151,7 @@ fluentd-elasticsearch plugin supports the creation of index templates and ILM po
 [Index Templates](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-templates.html) is used for controlling the way ES automatically maps/discover log's field data types and the way ES indexes these fields. [ES Index Lifecycle Management (ILM)](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-lifecycle-management.html) is used for automating the management of indices, and setting data retention policies.
 
 Additionally, separate ES indexes can be created for storing logs from different containers/app. Each index might has its own index template containing specific mapping configuration (schema definition) and its own ILM policy (different retention policies per log type). 
-Storing logs from different applications in different indexes is an alternative solution to [issue #58](https://github.com/ricsanfre/pi-cluster/issues/58), avoiding mismatch-data-type ingestion errors that might occur when Merge_Log, option in fluentbit's kubernetes filter configuration, is enabled.
+Storing logs from different applications in different indexes is an alternative solution to [issue #58](https://github.com/watacoso/pi-cluster/issues/58), avoiding mismatch-data-type ingestion errors that might occur when Merge_Log, option in fluentbit's kubernetes filter configuration, is enabled.
 
 [ILM using fixed index names](https://github.com/uken/fluent-plugin-elasticsearch/blob/master/README.Troubleshooting.md#fixed-ilm-indices) has been configured. Default plugin behaviour of creating indexes in logstash format (one new index per day) is not used. [Dynamic index template configuration](https://github.com/uken/fluent-plugin-elasticsearch/blob/master/README.Troubleshooting.md#configuring-for-dynamic-index-or-template) is configured, so a separate index will be generated for each namespace (index name: fluentd-namespace) with a common ILM policy.
 
@@ -1694,7 +1694,7 @@ The file content has the following sections:
 
     {{site.data.alerts.important}} **About Log_Merge and ES ingestion errors** 
 
-    Activating Merge_Log functionality might result in conflicting field types when tryin to ingest into elasticsearch causing its rejection. See [issue #58](https://github.com/ricsanfre/pi-cluster/issues/58).
+    Activating Merge_Log functionality might result in conflicting field types when tryin to ingest into elasticsearch causing its rejection. See [issue #58](https://github.com/watacoso/pi-cluster/issues/58).
 
     To solve this issue a filter rule in the aggregation layer (fluentd) has to be created. This rule will remove `log_processed` field and it will create a new field `json_message.<container-name>`, making unique the fields before ingesting into ES.
 
@@ -1736,7 +1736,7 @@ The file content has the following sections:
   This filter executes a local-time-to-utc filter (Lua script). It applies to system level logs (`/var/log/syslog` and `/var/log/auth.log`) . It translates logs timestamps from local time to UTC format.
 
   This is needed because time field included in these logs does not contain information about TimeZone. Since I am not using UTC time in my cluster (cluser is using `Europe/Madrid` timezone), Fluentbit/Elasticsearch, when parsing them, assumes they are in UTC timezone displaying them in the future.
-  See issue [#5](https://github.com/ricsanfre/pi-cluster/issues/5).
+  See issue [#5](https://github.com/watacoso/pi-cluster/issues/5).
 
 ##### customParser.conf
 
@@ -1872,12 +1872,12 @@ where 10.42.2.28 is the IP of fluentbit POD (one of them)
 
 {{site.data.alerts.note}}
 
-To do troubleshooting of APIs with curl command in kuberentes a utility POD can be deployed. In this case [ricsanfre/docker-curl-jq](https://github.com/ricsanfre/docker-curl-jq) docker image is used (simple alpine image containing bash, curl and jq)
+To do troubleshooting of APIs with curl command in kuberentes a utility POD can be deployed. In this case [watacoso/docker-curl-jq](https://github.com/watacoso/docker-curl-jq) docker image is used (simple alpine image containing bash, curl and jq)
 
 It can deployed with command:
 
 ```shell
-kubectl run -it --rm --image=ricsanfre/docker-curl-jq curly
+kubectl run -it --rm --image=watacoso/docker-curl-jq curly
 ```
 
 {{site.data.alerts.end}}
@@ -2012,12 +2012,12 @@ For colleting the logs from external nodes (nodes not belonging to kubernetes cl
 
 There are official installation packages for Ubuntu. Installation instructions can be found in [Fluentbit documentation: "Ubuntu installation"](https://docs.fluentbit.io/manual/installation/linux/ubuntu).
 
-Fluentbit installation and configuration tasks have been automated with Ansible developing a role: role [**ricsanfre.fluentbit**](https://galaxy.ansible.com/ricsanfre/fluentbit). This role install fluentbit and configure it.
+Fluentbit installation and configuration tasks have been automated with Ansible developing a role: role [**watacoso.fluentbit**](https://galaxy.ansible.com/watacoso/fluentbit). This role install fluentbit and configure it.
 
 ### Fluent bit configuration
 
 {{site.data.alerts.note}}
-**ricsanfre.fluentbit** role configuration is defined through a set of ansible variables. This variables are defined at `control` inventory group (group_vars/control.yml), to which `gateway`and `pimaster` belong to.
+**watacoso.fluentbit** role configuration is defined through a set of ansible variables. This variables are defined at `control` inventory group (group_vars/control.yml), to which `gateway`and `pimaster` belong to.
 {{site.data.alerts.end}}
 
 Configuration is quite similar to the one defined for the fluentbit-daemonset, removing kubernetes logs collection and filtering and maintaining only OS-level logs collection.
@@ -2051,7 +2051,7 @@ Configuration is quite similar to the one defined for the fluentbit-daemonset, r
 [OUTPUT]
     Name forward
     Match *
-    Host fluentd.picluster.ricsanfre.com
+    Host fluentd.picluster.watacoso.com
     Port 24224
     Self_Hostname gateway
     Shared_Key s1cret0

@@ -2,7 +2,7 @@
 
 # Fluentd image
 image:
-  repository: "ricsanfre/fluentd-aggregator"
+  repository: "watacoso/fluentd-aggregator"
   pullPolicy: "IfNotPresent"
   tag: "v1.17.1-debian-1.0"
 

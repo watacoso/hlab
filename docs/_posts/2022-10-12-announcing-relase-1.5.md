@@ -2,7 +2,7 @@
 layout: post
 title:  Kubernetes Pi Cluster relase v1.5
 date:   2022-10-12
-author: ricsanfre
+author: watacoso
 description: PiCluster News - announcing release v1.5
 ---
 
@@ -36,9 +36,9 @@ K3S currently does not come with a preintegrated Snapshot Controller, needed to 
 
 ## Prometheus memory footprint optimization
 
-Memory footprint reduction is achieved by removing  all metrics duplicates from K3S monitoring. See details in [issue #67](https://github.com/ricsanfre/pi-cluster/issues/67)
+Memory footprint reduction is achieved by removing  all metrics duplicates from K3S monitoring. See details in [issue #67](https://github.com/watacoso/pi-cluster/issues/67)
 
-Before the optimization, K3S duplicates came from monitoring kube-proxy, kubelet and apiserver components. kube-controller-manager and kube-scheduler monitoring was already removed in the past. See [issue #22](https://github.com/ricsanfre/pi-cluster/issues/22) 
+Before the optimization, K3S duplicates came from monitoring kube-proxy, kubelet and apiserver components. kube-controller-manager and kube-scheduler monitoring was already removed in the past. See [issue #22](https://github.com/watacoso/pi-cluster/issues/22) 
 
 **Before removing K3S duplicates**:
 
@@ -192,7 +192,7 @@ Functionality for automatically provision Grafana Dashboards, json files, locate
 | Logging | Elastic Search | 8.1.2 | Deployed with ECK Operator |
 | Logging | Kibana | 8.1.2 | Deployed with ECK Operator |
 | Logging | Fluentbit | 1.9.9 | Helm chart version: fluent-bit-0.20.9 |
-| Logging | Fluentd | 1.15.2 | Helm chart version: 0.3.9. [Custom docker image](https://github.com/ricsanfre/fluentd-aggregator) from official v1.15.2|
+| Logging | Fluentd | 1.15.2 | Helm chart version: 0.3.9. [Custom docker image](https://github.com/watacoso/fluentd-aggregator) from official v1.15.2|
 | Monitoring | Kube Prometheus Stack | 0.60.1 | Helm chart version: kube-prometheus-stack-41.0.0 |
 | Monitoring | Prometheus Operator | 0.59.2 | Installed by Kube Prometheus Stack. Helm chart version: kube-prometheus-stack-41.0.0   |
 | Monitoring | Prometheus | 2.39 | Installed by Kube Prometheus Stack. Helm chart version: kube-prometheus-stack-41.0.0 |

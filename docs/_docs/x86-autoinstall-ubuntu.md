@@ -118,7 +118,7 @@ Cloud-init (autoinstall configuration files), need to be copied to PXE server, s
   #cloud-config
   autoinstall:
     identity:
-      hostname: jammy-minimal
+      hostname: plucky-minimal
       password: $6$gnqbMUzHhQzpDEw.$.cCNVVDsDfj5Feebh.5O4VbOmib7tyjmeI2ZsFP7VK2kWwgJFbfjvXo3chpeAqCgXWVIW9oNQ/Ag85PR0IsKD/
       username: ubuntu
     version: 1
@@ -150,13 +150,13 @@ Also pressing F9, to open boot menu, and select the media to use for booting
 
 ### Minimal configuration
 
-The followin autointall configuration installs a host `jammy-minimal` with default user `ubuntu` with password `ubuntu`. Rest auto-install parmeters as default.
+The followin autointall configuration installs a host `plucky-minimal` with default user `ubuntu` with password `ubuntu`. Rest auto-install parmeters as default.
 
 ```yml
 #cloud-config
 autoinstall:
   identity:
-    hostname: jammy-minimal
+    hostname: plucky-minimal
     password: $6$gnqbMUzHhQzpDEw.$.cCNVVDsDfj5Feebh.5O4VbOmib7tyjmeI2ZsFP7VK2kWwgJFbfjvXo3chpeAqCgXWVIW9oNQ/Ag85PR0IsKD/
     username: ubuntu
   version: 1
@@ -164,7 +164,7 @@ autoinstall:
 
 ### Simple server installation
 
-The following configures a server, enablig SSH, enabling users passwords, disabling default user (`ubuntu`) and creating a single user (`ricsanfre`).
+The following configures a server, enablig SSH, enabling users passwords, disabling default user (`ubuntu`) and creating a single user (`watacoso`).
 
 In this case `storage` is keep to its defaults, letting the installer to configured a default partitioning using LVM.
 
@@ -178,7 +178,7 @@ autoinstall:
   identity:
     hostname: server
     password: $6$gnqbMUzHhQzpDEw.$.cCNVVDsDfj5Feebh.5O4VbOmib7tyjmeI2ZsFP7VK2kWwgJFbfjvXo3chpeAqCgXWVIW9oNQ/Ag85PR0IsKD/
-    username: ricsanfre
+    username: watacoso
   keyboard:
     layout: es
   ssh:
@@ -190,7 +190,7 @@ autoinstall:
   user-data:
     # Set TimeZone and Locale
     timezone: UTC
-    locale: es_ES.UTF-8
+    locale: it_IT.UTF-8
 
 ```
 
@@ -200,7 +200,7 @@ In this configuration `identity` section is not provided since hostname and defa
 
 In this case `storage` is keep to its defaults, letting the installer to configured a default partitioning using LVM.
 
-This configuration installs SSH server and disables user passwords. SSH authorized keys are addedd to default user configured `ricsanfre`.
+This configuration installs SSH server and disables user passwords. SSH authorized keys are addedd to default user configured `watacoso`.
 
 ```yml
 #cloud-config
@@ -216,7 +216,7 @@ autoinstall:
   user-data:
     # Set TimeZone and Locale
     timezone: UTC
-    locale: es_ES.UTF-8
+    locale: it_IT.UTF-8
 
     # Hostname
     hostname: server
@@ -226,7 +226,7 @@ autoinstall:
 
     users:
       # not using default ubuntu user
-      - name: ricsanfre
+      - name: watacoso
         primary_group: users
         groups: [adm, admin]
         shell: /bin/bash
@@ -370,7 +370,7 @@ autoinstall:
   user-data:
     # Set TimeZone and Locale
     timezone: UTC
-    locale: es_ES.UTF-8
+    locale: it_IT.UTF-8
 
     # Hostname
     hostname: erebor
@@ -379,7 +379,7 @@ autoinstall:
     manage_etc_hosts: localhost
 
     users:
-      - name: ricsanfre
+      - name: watacoso
         primary_group: users
         groups: [adm, admin]
         shell: /bin/bash
@@ -395,5 +395,5 @@ autoinstall:
 
 - [Ubuntu Automated Server Installation](https://ubuntu.com/server/docs/install/autoinstall)
 - [Netbooting the server installer on amd64](https://ubuntu.com/server/docs/install/netboot-amd64)
-- [Ubuntu 22.04 (Jammy) autoinstall over PXE](https://www.molnar-peter.hu/en/ubuntu-jammy-netinstall-pxe.html)
+- [Ubuntu 22.04 (Plucky) autoinstall over PXE](https://www.molnar-peter.hu/en/ubuntu-plucky-netinstall-pxe.html)
 

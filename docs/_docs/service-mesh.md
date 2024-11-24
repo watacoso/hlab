@@ -377,7 +377,7 @@ Installation procedure:
 
   Linkerd documentation contains information about how to configure [NGINX as Ingress Controller](https://linkerd.io/2.13/tasks/exposing-dashboard/#nginx).
 
-  The following Ingress resource, exposes linkerd-viz at `linkerd.picluster.ricsanfre.com`, enabling HTTP basic auth:
+  The following Ingress resource, exposes linkerd-viz at `linkerd.picluster.watacoso.com`, enabling HTTP basic auth:
 
   ```yml
   ---
@@ -402,15 +402,15 @@ Installation procedure:
         proxy_hide_header l5d-server-id;
       # Enable cert-manager to create automatically the SSL certificate and store in Secret
       cert-manager.io/cluster-issuer: ca-issuer
-      cert-manager.io/common-name: linkerd.picluster.ricsanfre.com
+      cert-manager.io/common-name: linkerd.picluster.watacoso.com
   spec:
     ingressClassName: nginx
     tls:
       - hosts:
-          - linkerd.picluster.ricsanfre.com
+          - linkerd.picluster.watacoso.com
         secretName: linkerd-viz-tls
     rules:
-      - host: linkerd.picluster.ricsanfre.com
+      - host: linkerd.picluster.watacoso.com
         http:
           paths:
             - path: /
@@ -705,7 +705,7 @@ One `longhorn-engine` process and a set of `longhorn-replica` processes is creat
 {{site.data.alerts.end}}
 
 
-Trying to apply the explicit annotation at namespace level or only explicit annotation for longhorn-manager daemon set (only available at Helm Chart configuration) causes Longhorn deployment to fail. See [picluster-issue #47](https://github.com/ricsanfre/pi-cluster/issues/47).
+Trying to apply the explicit annotation at namespace level or only explicit annotation for longhorn-manager daemon set (only available at Helm Chart configuration) causes Longhorn deployment to fail. See [picluster-issue #47](https://github.com/watacoso/pi-cluster/issues/47).
 
 One of the main problems is that `longhorn-manager`, is not accepting connections coming from localhost, only connections coming to the assigned IP address. When deploying `linkerd-proxy` as its sidecar, all connections received to its API endpoint are rejected because linkerd-proxy is using 127.0.0.1 as destination IP-address when routing all the incoming traffic to the container.
 
@@ -733,11 +733,11 @@ env:
 
 This environment variable can be changed using on an already deployed daemon set using the command `kubectl set env` or can be patched during installation of Helm Chart using its post-rendering feature with `kustomize`:
 
-- `kubectl set env` procedure described in [this comment of issue #47]:(https://github.com/ricsanfre/pi-cluster/issues/47#issuecomment-1077866955)
-- `helm+kustomize` procedure described in [this comment of issue #47]: (https://github.com/ricsanfre/pi-cluster/issues/47#issuecomment-1081754487)
+- `kubectl set env` procedure described in [this comment of issue #47]:(https://github.com/watacoso/pi-cluster/issues/47#issuecomment-1077866955)
+- `helm+kustomize` procedure described in [this comment of issue #47]: (https://github.com/watacoso/pi-cluster/issues/47#issuecomment-1081754487)
 
 
-Applying patching procedure on installation time (`helm+kustomize` procedure) still produces the error that Longhorn is not completely deployed (CSI driver is not deployed). See the analysis and the root cause identified in [issue #47](https://github.com/ricsanfre/pi-cluster/issues/47) and the correponding [bug submitted to longhorn project](https://github.com/longhorn/longhorn/issues/3809).
+Applying patching procedure on installation time (`helm+kustomize` procedure) still produces the error that Longhorn is not completely deployed (CSI driver is not deployed). See the analysis and the root cause identified in [issue #47](https://github.com/watacoso/pi-cluster/issues/47) and the correponding [bug submitted to longhorn project](https://github.com/longhorn/longhorn/issues/3809).
 
 
 So the only way to meshing `longhorn-manager` component is to wait till Longhorn is completely deployed and inject linkerd-proxy using explicit annotation afterwards:
@@ -841,7 +841,7 @@ For details about how to integrate with linkerd Elastic stack components using E
 
 {{site.data.alerts.important}}
 
-Elasticsearch automatic TLS configuration that was itinitially configured has been disabled, so Linkerd can gather more metrics about the connections. See [issue #45](https://github.com/ricsanfre/pi-cluster/issues/45)
+Elasticsearch automatic TLS configuration that was itinitially configured has been disabled, so Linkerd can gather more metrics about the connections. See [issue #45](https://github.com/watacoso/pi-cluster/issues/45)
 
 {{site.data.alerts.end}}
 

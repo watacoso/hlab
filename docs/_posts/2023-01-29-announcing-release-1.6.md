@@ -2,7 +2,7 @@
 layout: post
 title:  Kubernetes Pi Cluster relase v1.6
 date:   2023-01-29
-author: ricsanfre
+author: watacoso
 description: PiCluster News - announcing release v1.6
 ---
 
@@ -78,7 +78,7 @@ Main features:
 | Logging | Elastic Search | 8.1.2 | Deployed with ECK Operator |
 | Logging | Kibana | 8.1.2 | Deployed with ECK Operator |
 | Logging | Fluentbit | 2.0.4 | Helm chart version: 0.21.0 |
-| Logging | Fluentd | 1.15.2 | Helm chart version: 0.3.9. [Custom docker image](https://github.com/ricsanfre/fluentd-aggregator) from official v1.15.2|
+| Logging | Fluentd | 1.15.2 | Helm chart version: 0.3.9. [Custom docker image](https://github.com/watacoso/fluentd-aggregator) from official v1.15.2|
 | Logging | Loki | 2.6.1 | Helm chart grafana/loki version: 3.3.0 |
 | Monitoring | Kube Prometheus Stack | 0.61.1 | Helm chart version: 43.3.1 |
 | Monitoring | Prometheus Operator | 0.61.1 | Installed by Kube Prometheus Stack. Helm chart version: 43.3.1   |

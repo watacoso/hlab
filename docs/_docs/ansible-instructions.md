@@ -22,10 +22,10 @@ Step-by-step manual process to deploy and configure each component is also descr
 
   In case of building a VM check out tip for automating its creation in ["Ansible Control Node"](/docs/pimaster/).
 
-- Clone [Pi-Cluster Git repo](https://github.com/ricsanfre/pi-cluster) or download using the 'Download ZIP' link on GitHub.
+- Clone [Pi-Cluster Git repo](https://github.com/watacoso/pi-cluster) or download using the 'Download ZIP' link on GitHub.
 
   ```shell
-  git clone https://github.com/ricsanfre/pi-cluster.git
+  git clone https://github.com/watacoso/pi-cluster.git
   ```
 
 - Install `docker` and `docker-compose`
@@ -59,13 +59,13 @@ If you maintain the private network assigned to the cluster (10.0.0.0/24) and no
 
 ### Configuring ansible remote access 
 
-The UNIX user to be used in remote connections (i.e.: `ricsanfre`) and its SSH key file location need to be specified.
+The UNIX user to be used in remote connections (i.e.: `watacoso`) and its SSH key file location need to be specified.
 
 Modify [`ansible/group_vars/all.yml`]({{ site.git_edit_address }}/ansible/group_vars/all.yml) to set the UNIX user to be used by Ansible in the remote connection, `ansible_user` (default value `ansible`) and its SSH private key, `ansible_ssh_private_key_file`
 
   ```yml
   # Remote user name
-  ansible_user: ricsanfre
+  ansible_user: watacoso
 
   # Ansible ssh private key
   ansible_ssh_private_key_file: ~/.ssh/id_rsa
@@ -207,8 +207,8 @@ The installation procedure followed is the described in ["Ubuntu OS Installation
 Before applying the cloud-init files of the table above, remember to change the following
 
 - `user-data` file:
-  - UNIX privileged user, `ricsanfre`, can be changed. 
-  - `ssh_authorized_keys` field for defaul user (`ricsanfre`). Your own ssh public keys, created during `pimaster` control node preparation, must be included.
+  - UNIX privileged user, `watacoso`, can be changed. 
+  - `ssh_authorized_keys` field for defaul user (`watacoso`). Your own ssh public keys, created during `pimaster` control node preparation, must be included.
   - `timezone` and `locale` can be changed as well to fit your environment.
 
 - `network-config` file: to fit yor home wifi network
@@ -250,8 +250,8 @@ In above user-data files, `hostname` field need to be changed for each node (nod
 Before applying the cloud-init files of the table above, remember to change the following
 
 - `user-data` file:
-  - UNIX privileged user, `ricsanfre`, can be changed.
-  - `ssh_authorized_keys` field for default user (`ricsanfre`). Your own ssh public keys, created during `pimaster` control node preparation, must be included.
+  - UNIX privileged user, `watacoso`, can be changed.
+  - `ssh_authorized_keys` field for default user (`watacoso`). Your own ssh public keys, created during `pimaster` control node preparation, must be included.
   - `timezone` and `locale` can be changed as well to fit your environment.
 
 {{site.data.alerts.end}}
