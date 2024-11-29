@@ -289,10 +289,10 @@ From software perspective, I have developed the following:
 
    | Ansible role | Description | Github |
    | ---| --- | --- | 
-   |  [watacoso.security](https://galaxy.ansible.com/watacoso/security) | Automate SSH hardening configuration tasks  | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-security)|
+   |  [ricsanfre.security](https://galaxy.ansible.com/watacoso/security) | Automate SSH hardening configuration tasks  | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-security)|
    | [watacoso.ntp](https://galaxy.ansible.com/watacoso/ntp)  | Chrony NTP service configuration | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-ntp) |
    | [watacoso.firewall](https://galaxy.ansible.com/watacoso/firewall) | NFtables firewall configuration | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-firewall) |
-   | [watacoso.dnsmasq](https://galaxy.ansible.com/watacoso/dnsmasq) | Dnsmasq configuration | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-dnsmasq) |
+   | [ricsanfre.dnsmasq](https://galaxy.ansible.com/watacoso/dnsmasq) | Dnsmasq configuration | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-dnsmasq) |
    | [watacoso.storage](https://galaxy.ansible.com/watacoso/storage)| Configure LVM | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-storage) |
    | [watacoso.iscsi_target](https://galaxy.ansible.com/watacoso/iscsi_target)| Configure iSCSI Target| [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-iscsi_target) |
    | [watacoso.iscsi_initiator](https://galaxy.ansible.com/watacoso/iscsi_initiator)| Configure iSCSI Initiator | [{{site.data.icons.github}}](https://github.com/watacoso/ansible-role-iscsi_initiator) |

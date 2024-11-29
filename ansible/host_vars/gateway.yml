@@ -13,7 +13,7 @@ dnsmasq_upstream_dns_servers:
   - 1.1.1.1
   - 8.8.8.8
 dnsmasq_dhcp_range: '10.0.0.100,10.0.0.250'
-dnsmasq_discover_inventory: false
+dnsmasq_discover_inventory: true
 # dnsmasq_additional_dns_hosts:
 #   ntp_server:
 #     desc: "NTP Server"
@@ -89,10 +89,14 @@ firewall_nat_enabled: true
 nft_define_host:
   lan interface:
     name: lan_interface
+    # NOTE: Set to ethernet interface
     value: 'eth0'
   wan interface:
     name: wan_interface
     value: 'wlan0'
+  vbox interface:
+    name: vbox_interface
+    value: 'enp0s3'
   lan network:
     name: lan_network
     value: '10.0.0.0/24'
@@ -131,16 +135,24 @@ nft_output_host_rules:
 nft_forward_host_rules:
   200 lan to wan tcp:
     - iifname $lan_interface ip saddr $lan_network oifname $wan_interface tcp dport @forward_tcp_accept ct state new accept
+    - iifname $lan_interface ip saddr $lan_network oifname $vbox_interface tcp dport @forward_tcp_accept ct state new accept
   210 wan to lan udp:
     - iifname $lan_interface ip saddr $lan_network oifname $wan_interface udp dport @forward_udp_accept ct state new accept
+    - iifname $lan_interface ip saddr $lan_network oifname $vbox_interface udp dport @forward_udp_accept ct state new accept
   220 ssh from wan:
     - iifname $wan_interface oifname $lan_interface ip daddr $lan_network tcp dport ssh ct state new accept
+    - iifname $vbox_interface oifname $lan_interface ip daddr $lan_network tcp dport ssh ct state new accept
   230 http from wan:
     - iifname $wan_interface oifname $lan_interface ip daddr $lan_network tcp dport {http, https} ct state new accept
+    - iifname $vbox_interface oifname $lan_interface ip daddr $lan_network tcp dport {http, https} ct state new accept
   240 haproxy from wan:
     - iifname $wan_interface oifname $lan_interface ip daddr 10.0.0.11 tcp dport 6443 ct state new accept
+    - iifname $vbox_interface oifname $lan_interface ip daddr 10.0.0.11 tcp dport 6443 ct state new accept
   250 port-forwarding from wan:
     - iifname $wan_interface oifname $lan_interface ip daddr 10.0.0.12 tcp dport 8080 ct state new accept
+    - iifname $vbox_interface oifname $lan_interface ip daddr 10.0.0.12 tcp dport 8080 ct state new accept
+
+    enp0s3
 # NAT Post-routing
 nft_nat_host_postrouting_rules:
   005 masquerade lan to wan:

@@ -20,5 +20,5 @@
         restic_use_ca_cert: false
       when: enable_letsencrypt
   roles:
-    - role: watacoso.backup
+    - role: ricsanfre.backup
       tags: [backup]

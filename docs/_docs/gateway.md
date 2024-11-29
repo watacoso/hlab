@@ -472,7 +472,7 @@ This route need to be added to my Laptop and the VM running `pimaster` node
 ## DHCP/DNS Configuration
 
 `dnsmasq` will be used as lightweigh DHCP/DNS server
-For automating configuration tasks, ansible role [**watacoso.dnsmasq**](https://galaxy.ansible.com/watacoso/dnsmasq) has been developed.
+For automating configuration tasks, ansible role [**ricsanfre.dnsmasq**](https://galaxy.ansible.com/watacoso/dnsmasq) has been developed.
 
 - Step 1. Install dnsmasq
 

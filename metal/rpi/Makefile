@@ -1,9 +1,9 @@
-IMG=ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz
+IMG=ubuntu-22.04.5-preinstalled-server-arm64+raspi.img.xz
 URL_IMG=https://cdimage.ubuntu.com/releases/22.04/release/${IMG}
 # REPLACE WITH YOUR USB (`lsblk`)
 USB=/dev/sdb
 SYSTEM_BOOT_MOUNT=/tmp/pi-disk
-USER_DATA_NODES=user-data-SSD-partition
+USER_DATA_NODES=user-data
 
 .EXPORT_ALL_VARIABLES:
 
@@ -33,13 +33,13 @@ prepare-gateway:
 .PHONY: prepare-node1
 prepare-node1:
 	sudo mount ${USB}1 ${SYSTEM_BOOT_MOUNT}
-	sed 's/nodeX/node1/g' cloud-init/nodes/${USER_DATA_NODES} | sudo tee ${SYSTEM_BOOT_MOUNT}/user-data
+	sed 's/nodeX/node1/g' cloud-init/nodes/${USER_DATA_NODES}-SSD-partition | sudo tee ${SYSTEM_BOOT_MOUNT}/user-data-SSD-partition
 	sudo umount ${SYSTEM_BOOT_MOUNT}
 
 .PHONY: prepare-node2
 prepare-node2:
 	sudo mount ${USB}1 ${SYSTEM_BOOT_MOUNT}
-	sed 's/nodeX/node2/g' cloud-init/nodes/${USER_DATA_NODES} | sudo tee ${SYSTEM_BOOT_MOUNT}/user-data
+	sed 's/nodeX/node2/g' cloud-init/nodes/${USER_DATA_NODES}-SSD-partition | sudo tee ${SYSTEM_BOOT_MOUNT}/user-data
 	sudo umount ${SYSTEM_BOOT_MOUNT}
 
 .PHONY: prepare-node3

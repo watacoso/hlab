@@ -1,30 +1,30 @@
 ---
 roles:
-  - name: watacoso.security
+  - name: ricsanfre.security
     version: v1.0.0
-  - name: watacoso.ntp
+  - name: ricsanfre.ntp
     version: v1.0.0
-  - name: watacoso.firewall
+  - name: ricsanfre.firewall
     version: v1.0.0
-  - name: watacoso.dnsmasq
+  - name: ricsanfre.dnsmasq
     version: v1.0.4
-  - name: watacoso.bind9
+  - name: ricsanfre.bind9
     version: v1.0.5
-  - name: watacoso.storage
+  - name: ricsanfre.storage
     version: v1.0.0
-  - name: watacoso.iscsi_target
+  - name: ricsanfre.iscsi_target
     version: v1.0.0
-  - name: watacoso.iscsi_initiator
+  - name: ricsanfre.iscsi_initiator
     version: v1.1.1
-  - name: watacoso.k8s_cli
+  - name: ricsanfre.k8s_cli
     version: v1.0.0
-  - name: watacoso.fluentbit
+  - name: ricsanfre.fluentbit
     version: v1.0.4
-  - name: watacoso.minio
+  - name: ricsanfre.minio
     version: v1.1.8
-  - name: watacoso.backup
+  - name: ricsanfre.backup
     version: v1.1.3
-  - name: watacoso.vault
+  - name: ricsanfre.vault
     version: v1.0.4
 collections:
   - name: community.general

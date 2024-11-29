@@ -16,12 +16,12 @@
       tags: [os]
 
     # Security Hardening
-    - role: watacoso.security
+    - role: ricsanfre.security
       tags: [security]
 
     # DNS Resolver Forwarder configuration
     # DHCP server configuration
-    - role: watacoso.dnsmasq
+    - role: ricsanfre.dnsmasq
       tags: [dns]
 
     # Update DNS server to point to DNSmasq
@@ -29,11 +29,11 @@
       tags: [dns]
 
     # Firewall (nftables) configuration
-    - role: watacoso.firewall
+    - role: ricsanfre.firewall
       tags: [firewall]
 
     # NTP Server configuration
-    - role: watacoso.ntp
+    - role: ricsanfre.ntp
       tags: [ntp]
 
   tasks:
@@ -47,11 +47,11 @@
         # iSCSI LUNs: LVM Volumes configuration
         - name: Configure iSCSI SAN Target
           include_role:
-            name: watacoso.storage
+            name: ricsanfre.storage
         # iSCSI LUNs: LVM Volumes configuration
         - name: Configure iSCSI SAN Target
           include_role:
-            name: watacoso.iscsi_target
+            name: ricsanfre.iscsi_target
       when: centralized_san
       tags: [iscsi]
 
@@ -70,11 +70,11 @@
       tags: [os]
 
     # Security Hardening
-    - role: watacoso.security
+    - role: ricsanfre.security
       tags: [security]
 
     # NTP Client configuration
-    - role: watacoso.ntp
+    - role: ricsanfre.ntp
       tags: [ntp]
 
   tasks:
@@ -88,11 +88,11 @@
         # iSCSI client (initiator) configuration
         - name: Configure iSCSI Initiator
           include_role:
-            name: watacoso.iscsi_initiator
+            name: ricsanfre.iscsi_initiator
         # Mounting iSCSI LUNs
         - name: Configure iSCSI SAN Target
           include_role:
-            name: watacoso.storage
+            name: ricsanfre.storage
       when: centralized_san
       tags: [iscsi]
 
@@ -103,7 +103,7 @@
         # iSCSI initiator needs to be configured for Longhorn
         - name: Configure iSCSI Initiator
           include_role:
-            name: watacoso.iscsi_initiator
+            name: ricsanfre.iscsi_initiator
           vars:
             open_iscsi_automatic_startup: true
       when: not centralized_san

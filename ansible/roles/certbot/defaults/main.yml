@@ -11,7 +11,7 @@ dns_ionos_prefix: ionos-prefix
 dns_ionos_secret: ionos-secret
 dns_ionos_api_endpoint: https://api.hosting.ionos.com
 
-certbot_email: myemail@mydomain.es
+certbot_email: watacoso@gmail.com
 
 # dns propagation in seconds
 propagation_seconds: 300

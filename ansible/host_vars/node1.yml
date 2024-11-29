@@ -34,9 +34,15 @@ bind9_zones:
       - label: ns
         type: A
         rdata: 10.0.0.11
-      - label: node-pi-1
+      - label: node1
         type: A
         rdata: 10.0.0.11
+      - label: node2
+        type: A
+        rdata: 10.0.0.12
+      - label: node3
+        type: A
+        rdata: 10.0.0.13
       - label: node-asus-1
         type: A
         rdata: 10.0.0.20
@@ -60,7 +66,11 @@ bind9_zones:
         rdata: "gateway.{{ dns_domain }}."
       - label: 11.0
         type: PTR
-        rdata: "node-pi-1.{{ dns_domain }}."
+      - label: 12.0
+        type: PTR
+      - label: 13.0
+        type: PTR
+        rdata: "node1.{{ dns_domain }}."
       - label: 20.0
         type: PTR
         rdata: "node-asus-1.{{ dns_domain }}."
